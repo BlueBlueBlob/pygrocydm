@@ -36,6 +36,7 @@ from .product_group import PRODUCT_GROUPS_ENDPOINT, ProductGroup
 from .quantity_unit import QUANTITY_UNITS_ENDPOINT, QuantityUnit
 from .quantity_unit_conversion import (QUANTITY_UNIT_CONVERTIONS_ENDPOINT,
                                        QuantityUnitConversion)
+from .recipe import RECIPES_ENDPOINT, Recipe
 from .shopping_list import (SHOPPING_LIST_ENDPOINT, SHOPPING_LISTS_ENDPOINT,
                             ShoppingList, ShoppingListItem)
 from .task import TASKS_ENDPOINT, Task
@@ -124,7 +125,11 @@ class GrocyDataManager():
 
     def meal_plan(self) -&gt; GrocyEntityList:
         cls = MealPlan
-        return GrocyEntityList(self.__api, cls, MEAL_PLAN_ENDPOINT)</code></pre>
+        return GrocyEntityList(self.__api, cls, MEAL_PLAN_ENDPOINT)
+
+    def recipes(self) -&gt; GrocyEntityList:
+        cls = Recipe
+        return GrocyEntityList(self.__api, cls, RECIPES_ENDPOINT)</code></pre>
 </details>
 </section>
 <section>
@@ -233,7 +238,11 @@ class GrocyDataManager():
 
     def meal_plan(self) -&gt; GrocyEntityList:
         cls = MealPlan
-        return GrocyEntityList(self.__api, cls, MEAL_PLAN_ENDPOINT)</code></pre>
+        return GrocyEntityList(self.__api, cls, MEAL_PLAN_ENDPOINT)
+
+    def recipes(self) -&gt; GrocyEntityList:
+        cls = Recipe
+        return GrocyEntityList(self.__api, cls, RECIPES_ENDPOINT)</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
@@ -364,6 +373,20 @@ class GrocyDataManager():
     return GrocyEntityList(self.__api, cls, QUANTITY_UNITS_ENDPOINT)</code></pre>
 </details>
 </dd>
+<dt id="pygrocydm.grocy_datamanager.GrocyDataManager.recipes"><code class="name flex">
+<span>def <span class="ident">recipes</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def recipes(self) -&gt; GrocyEntityList:
+    cls = Recipe
+    return GrocyEntityList(self.__api, cls, RECIPES_ENDPOINT)</code></pre>
+</details>
+</dd>
 <dt id="pygrocydm.grocy_datamanager.GrocyDataManager.shopping_list"><code class="name flex">
 <span>def <span class="ident">shopping_list</span></span>(<span>self)</span>
 </code></dt>
@@ -492,6 +515,7 @@ class GrocyDataManager():
 <li><code><a title="pygrocydm.grocy_datamanager.GrocyDataManager.products" href="#pygrocydm.grocy_datamanager.GrocyDataManager.products">products</a></code></li>
 <li><code><a title="pygrocydm.grocy_datamanager.GrocyDataManager.quantity_unit_conversions" href="#pygrocydm.grocy_datamanager.GrocyDataManager.quantity_unit_conversions">quantity_unit_conversions</a></code></li>
 <li><code><a title="pygrocydm.grocy_datamanager.GrocyDataManager.quantity_units" href="#pygrocydm.grocy_datamanager.GrocyDataManager.quantity_units">quantity_units</a></code></li>
+<li><code><a title="pygrocydm.grocy_datamanager.GrocyDataManager.recipes" href="#pygrocydm.grocy_datamanager.GrocyDataManager.recipes">recipes</a></code></li>
 <li><code><a title="pygrocydm.grocy_datamanager.GrocyDataManager.shopping_list" href="#pygrocydm.grocy_datamanager.GrocyDataManager.shopping_list">shopping_list</a></code></li>
 <li><code><a title="pygrocydm.grocy_datamanager.GrocyDataManager.shopping_lists" href="#pygrocydm.grocy_datamanager.GrocyDataManager.shopping_lists">shopping_lists</a></code></li>
 <li><code><a title="pygrocydm.grocy_datamanager.GrocyDataManager.task_categories" href="#pygrocydm.grocy_datamanager.GrocyDataManager.task_categories">task_categories</a></code></li>
