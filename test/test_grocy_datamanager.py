@@ -9,6 +9,7 @@ from pygrocydm.battery import Battery
 from pygrocydm.chore import Chore
 from pygrocydm.equipment import Equipment
 from pygrocydm.location import Location
+from pygrocydm.meal_plan import MealPlan
 from pygrocydm.product import Product
 from pygrocydm.product_group import ProductGroup
 from pygrocydm.quantity_unit import QuantityUnit
@@ -217,6 +218,13 @@ class TestGrocyDataManager(TestCase):
         assert len(userobjects) >=1
         for userobject in userobjects:
             assert isinstance(userobject, UserObject)
+
+    def test_meal_plan_valid(self):
+        userobjects = self.gdm.meal_plan().list
+        assert isinstance(userobjects, tuple)
+        assert len(userobjects) >=1
+        for userobject in userobjects:
+            assert isinstance(userobject, MealPlan)
 
     @responses.activate
     def test_get_userfields_valid(self):
