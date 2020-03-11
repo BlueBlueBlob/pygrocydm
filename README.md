@@ -5,6 +5,7 @@
 [![PyPI](https://img.shields.io/pypi/v/pygrocydm.svg)](https://pypi.org/project/pygrocydm/)
 [![Automated Release Notes by gren](https://img.shields.io/badge/%F0%9F%A4%96-release%20notes-00B2EE.svg)](https://github-tools.github.io/github-release-notes/)
 [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/BlueBlueBlob/pygrocydm/?ref=repository-badge)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm?ref=badge_shield)
 
 ## Installation
 
@@ -71,3 +72,7 @@ else:
     new_product['qu_factor_purchase_to_stock'] = 1
     new_product_id = products.add(new_product)
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm?ref=badge_large)
