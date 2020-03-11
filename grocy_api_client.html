@@ -86,6 +86,8 @@ class GrocyEntity():
         self.__parsed_json = parsed_json
         self.__id = parse_int(parsed_json.get(&#39;id&#39;))
         self.__endpoint = f&#34;{endpoint}/{self.__id}&#34;
+        self.__userfields_enpoint = self.__endpoint.replace(
+            &#39;objects&#39;, &#39;userfields&#39;)
         self.__row_created_timestamp = parse_date(
             parsed_json.get(&#39;row_created_timestamp&#39;))
 
@@ -94,6 +96,15 @@ class GrocyEntity():
 
     def delete(self):
         return self.__api.do_request(&#34;DELETE&#34;, self.__endpoint)
+
+    def get_userfields(self):
+        return self.__api.do_request(&#34;GET&#34;, self.__userfields_enpoint)
+
+    def set_userfields(self, key, value):
+        data = {
+            key: value
+        }
+        return self.__api.do_request(&#34;PUT&#34;, self.__userfields_enpoint, data)
 
     @property
     def id(self) -&gt; int:
@@ -109,16 +120,16 @@ class GrocyEntityList():
         self.__api = api
         self.__cls = cls
         self.__endpoint = endpoint
-        self.__list = None
+        self.__list = ()
         self.refresh()
 
     def refresh(self):
         parsed_json = self.__api.do_request(&#34;GET&#34;, self.__endpoint)
         if parsed_json:
-            self.__list = tuple(
-                [self.__cls(
-                    self.__api, self.__endpoint,
-                    response) for response in parsed_json])
+            self.__list = tuple([
+                self.__cls(self.__api, self.__endpoint, response)
+                for response in parsed_json
+            ])
 
     def add(self, item: dict):
         resp = self.__api.do_request(&#34;POST&#34;, self.__endpoint, item)
@@ -130,10 +141,10 @@ class GrocyEntityList():
         endpoint = f&#34;{self.__endpoint}/search/{search_str}&#34;
         parsed_json = self.__api.do_request(&#34;GET&#34;, endpoint)
         if parsed_json:
-            return tuple(
-                [self.__cls(
-                    self.__api, self.__endpoint,
-                    response) for response in parsed_json])
+            return tuple([
+                self.__cls(self.__api, self.__endpoint, response)
+                for response in parsed_json
+            ])
 
     @property
     def list(self) -&gt; Tuple[GrocyEntity]:
@@ -260,6 +271,8 @@ class GrocyEntityList():
         self.__parsed_json = parsed_json
         self.__id = parse_int(parsed_json.get(&#39;id&#39;))
         self.__endpoint = f&#34;{endpoint}/{self.__id}&#34;
+        self.__userfields_enpoint = self.__endpoint.replace(
+            &#39;objects&#39;, &#39;userfields&#39;)
         self.__row_created_timestamp = parse_date(
             parsed_json.get(&#39;row_created_timestamp&#39;))
 
@@ -268,6 +281,15 @@ class GrocyEntityList():
 
     def delete(self):
         return self.__api.do_request(&#34;DELETE&#34;, self.__endpoint)
+
+    def get_userfields(self):
+        return self.__api.do_request(&#34;GET&#34;, self.__userfields_enpoint)
+
+    def set_userfields(self, key, value):
+        data = {
+            key: value
+        }
+        return self.__api.do_request(&#34;PUT&#34;, self.__userfields_enpoint, data)
 
     @property
     def id(self) -&gt; int:
@@ -350,6 +372,35 @@ def row_created_timestamp(self) -&gt; datetime:
     return self.__api.do_request(&#34;PUT&#34;, self.__endpoint, data)</code></pre>
 </details>
 </dd>
+<dt id="pygrocydm.grocy_api_client.GrocyEntity.get_userfields"><code class="name flex">
+<span>def <span class="ident">get_userfields</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get_userfields(self):
+    return self.__api.do_request(&#34;GET&#34;, self.__userfields_enpoint)</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.grocy_api_client.GrocyEntity.set_userfields"><code class="name flex">
+<span>def <span class="ident">set_userfields</span></span>(<span>self, key, value)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def set_userfields(self, key, value):
+    data = {
+        key: value
+    }
+    return self.__api.do_request(&#34;PUT&#34;, self.__userfields_enpoint, data)</code></pre>
+</details>
+</dd>
 </dl>
 </dd>
 <dt id="pygrocydm.grocy_api_client.GrocyEntityList"><code class="flex name class">
@@ -367,16 +418,16 @@ def row_created_timestamp(self) -&gt; datetime:
         self.__api = api
         self.__cls = cls
         self.__endpoint = endpoint
-        self.__list = None
+        self.__list = ()
         self.refresh()
 
     def refresh(self):
         parsed_json = self.__api.do_request(&#34;GET&#34;, self.__endpoint)
         if parsed_json:
-            self.__list = tuple(
-                [self.__cls(
-                    self.__api, self.__endpoint,
-                    response) for response in parsed_json])
+            self.__list = tuple([
+                self.__cls(self.__api, self.__endpoint, response)
+                for response in parsed_json
+            ])
 
     def add(self, item: dict):
         resp = self.__api.do_request(&#34;POST&#34;, self.__endpoint, item)
@@ -388,10 +439,10 @@ def row_created_timestamp(self) -&gt; datetime:
         endpoint = f&#34;{self.__endpoint}/search/{search_str}&#34;
         parsed_json = self.__api.do_request(&#34;GET&#34;, endpoint)
         if parsed_json:
-            return tuple(
-                [self.__cls(
-                    self.__api, self.__endpoint,
-                    response) for response in parsed_json])
+            return tuple([
+                self.__cls(self.__api, self.__endpoint, response)
+                for response in parsed_json
+            ])
 
     @property
     def list(self) -&gt; Tuple[GrocyEntity]:
@@ -442,10 +493,10 @@ def list(self) -&gt; Tuple[GrocyEntity]:
 <pre><code class="python">def refresh(self):
     parsed_json = self.__api.do_request(&#34;GET&#34;, self.__endpoint)
     if parsed_json:
-        self.__list = tuple(
-            [self.__cls(
-                self.__api, self.__endpoint,
-                response) for response in parsed_json])</code></pre>
+        self.__list = tuple([
+            self.__cls(self.__api, self.__endpoint, response)
+            for response in parsed_json
+        ])</code></pre>
 </details>
 </dd>
 <dt id="pygrocydm.grocy_api_client.GrocyEntityList.search"><code class="name flex">
@@ -461,10 +512,10 @@ def list(self) -&gt; Tuple[GrocyEntity]:
     endpoint = f&#34;{self.__endpoint}/search/{search_str}&#34;
     parsed_json = self.__api.do_request(&#34;GET&#34;, endpoint)
     if parsed_json:
-        return tuple(
-            [self.__cls(
-                self.__api, self.__endpoint,
-                response) for response in parsed_json])</code></pre>
+        return tuple([
+            self.__cls(self.__api, self.__endpoint, response)
+            for response in parsed_json
+        ])</code></pre>
 </details>
 </dd>
 </dl>
@@ -496,8 +547,10 @@ def list(self) -&gt; Tuple[GrocyEntity]:
 <ul class="">
 <li><code><a title="pygrocydm.grocy_api_client.GrocyEntity.delete" href="#pygrocydm.grocy_api_client.GrocyEntity.delete">delete</a></code></li>
 <li><code><a title="pygrocydm.grocy_api_client.GrocyEntity.edit" href="#pygrocydm.grocy_api_client.GrocyEntity.edit">edit</a></code></li>
+<li><code><a title="pygrocydm.grocy_api_client.GrocyEntity.get_userfields" href="#pygrocydm.grocy_api_client.GrocyEntity.get_userfields">get_userfields</a></code></li>
 <li><code><a title="pygrocydm.grocy_api_client.GrocyEntity.id" href="#pygrocydm.grocy_api_client.GrocyEntity.id">id</a></code></li>
 <li><code><a title="pygrocydm.grocy_api_client.GrocyEntity.row_created_timestamp" href="#pygrocydm.grocy_api_client.GrocyEntity.row_created_timestamp">row_created_timestamp</a></code></li>
+<li><code><a title="pygrocydm.grocy_api_client.GrocyEntity.set_userfields" href="#pygrocydm.grocy_api_client.GrocyEntity.set_userfields">set_userfields</a></code></li>
 </ul>
 </li>
 <li>
