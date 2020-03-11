@@ -42,16 +42,16 @@ class TestGrocyDataManager(TestCase):
     def test_products_invalid_no_data(self):
         resp = []
         responses.add(responses.GET,
-            '{}:{}/api/objects/products'.format(CONST_BASE_URL, CONST_PORT),
+            f"{CONST_BASE_URL}:{CONST_PORT}/api/objects/products",
             json=resp,
             status=200)
         products = self.gdm.products().list
-        assert products is None
+        assert len(products) == 0
 
     @responses.activate
     def test_products_error(self):
         responses.add(responses.GET,
-            '{}:{}/api/objects/products'.format(CONST_BASE_URL, CONST_PORT),
+            f"{CONST_BASE_URL}:{CONST_PORT}/api/objects/products",
             status=400)
         self.assertRaises(HTTPError, self.gdm.products)
 
@@ -147,10 +147,10 @@ class TestGrocyDataManager(TestCase):
 
     @responses.activate
     def test_search_product_error(self):
-        url = '{}:{}/api/objects/products'.format(CONST_BASE_URL, CONST_PORT)
+        url = f"{CONST_BASE_URL}:{CONST_PORT}/api/objects/products"
         responses.add_passthru(url)
         responses.add(responses.GET,
-            '{}/search/error'.format(url),
+            f"{url}/search/error",
             status=400)
         products = self.gdm.products()
         self.assertRaises(HTTPError, products.search, "error")
@@ -217,3 +217,40 @@ class TestGrocyDataManager(TestCase):
         assert len(userobjects) >=1
         for userobject in userobjects:
             assert isinstance(userobject, UserObject)
+
+    @responses.activate
+    def test_get_userfields_valid(self):
+        base_url = f"{CONST_BASE_URL}:{CONST_PORT}/api"
+        resp =  {
+                "uf1": 0,
+                "uf2": "string"
+            }
+        userfields_url = f"{base_url}/userfields/products/1"
+        responses.add(responses.GET, userfields_url, json=resp, status=200)
+        responses.add_passthru(f"{base_url}/objects/products")
+        product = self.gdm.products().list[0]
+
+        product_uf = product.get_userfields()
+
+        assert product_uf['uf1'] == 0
+
+    def test_get_userfields_invalid_no_data(self):
+        assert not self.gdm.products().list[0].get_userfields()
+
+    @responses.activate
+    def test_set_userfields_valid(self):
+        base_url = f"{CONST_BASE_URL}:{CONST_PORT}/api"
+        responses.add_passthru(f"{base_url}/objects/products")
+        product = self.gdm.products().list[0]
+        userfields_url = f"{base_url}/userfields/products/1"
+        responses.add(responses.PUT, userfields_url, status=204)
+        assert not product.set_userfields("auserfield", "value")
+
+    @responses.activate
+    def test_set_userfields_error(self):
+        base_url = f"{CONST_BASE_URL}:{CONST_PORT}/api"
+        responses.add_passthru(f"{base_url}/objects/products")
+        product = self.gdm.products().list[0]
+        userfields_url = f"{base_url}/userfields/products/1"
+        responses.add(responses.PUT, userfields_url, status=400)
+        self.assertRaises(HTTPError, product.set_userfields, "auserfield", "value")

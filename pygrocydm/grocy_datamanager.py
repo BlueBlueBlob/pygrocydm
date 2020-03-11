@@ -20,17 +20,17 @@ from .userobject import USEROBJECTS_ENDPOINT, UserObject
 
 class GrocyDataManager():
     """
-    Main class, Handles Generic Entities from Grocy
+    Main class, Handles Generic Entities from Grocy.
     """
     def __init__(
             self, base_url, api_key,
             port: int = DEFAULT_PORT_NUMBER,
             verify_ssl=True):
         """
-        Constructor requiring base url and API key
-        
-        :param base_url: Grocy server url
-        :param api_key: Grocy API key
+        Constructor requiring base url and API key.
+        Attributes:
+            base_url: Grocy server url.
+            api_key: Grocy API key.
         """
         self.__api = GrocyApiClient(base_url, api_key, port, verify_ssl)
 

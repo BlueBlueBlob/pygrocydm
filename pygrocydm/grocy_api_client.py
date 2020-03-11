@@ -60,6 +60,8 @@ class GrocyEntity():
         self.__parsed_json = parsed_json
         self.__id = parse_int(parsed_json.get('id'))
         self.__endpoint = f"{endpoint}/{self.__id}"
+        self.__userfields_enpoint = self.__endpoint.replace(
+            'objects', 'userfields')
         self.__row_created_timestamp = parse_date(
             parsed_json.get('row_created_timestamp'))
 
@@ -68,6 +70,15 @@ class GrocyEntity():
 
     def delete(self):
         return self.__api.do_request("DELETE", self.__endpoint)
+
+    def get_userfields(self):
+        return self.__api.do_request("GET", self.__userfields_enpoint)
+
+    def set_userfields(self, key, value):
+        data = {
+            key: value
+        }
+        return self.__api.do_request("PUT", self.__userfields_enpoint, data)
 
     @property
     def id(self) -> int:
@@ -83,16 +94,16 @@ class GrocyEntityList():
         self.__api = api
         self.__cls = cls
         self.__endpoint = endpoint
-        self.__list = None
+        self.__list = ()
         self.refresh()
 
     def refresh(self):
         parsed_json = self.__api.do_request("GET", self.__endpoint)
         if parsed_json:
-            self.__list = tuple(
-                [self.__cls(
-                    self.__api, self.__endpoint,
-                    response) for response in parsed_json])
+            self.__list = tuple([
+                self.__cls(self.__api, self.__endpoint, response)
+                for response in parsed_json
+            ])
 
     def add(self, item: dict):
         resp = self.__api.do_request("POST", self.__endpoint, item)
@@ -104,10 +115,10 @@ class GrocyEntityList():
         endpoint = f"{self.__endpoint}/search/{search_str}"
         parsed_json = self.__api.do_request("GET", endpoint)
         if parsed_json:
-            return tuple(
-                [self.__cls(
-                    self.__api, self.__endpoint,
-                    response) for response in parsed_json])
+            return tuple([
+                self.__cls(self.__api, self.__endpoint, response)
+                for response in parsed_json
+            ])
 
     @property
     def list(self) -> Tuple[GrocyEntity]:
