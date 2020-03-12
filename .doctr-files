@@ -11,6 +11,7 @@
 ./quantity_unit.html
 ./quantity_unit_conversion.html
 ./recipe.html
+./recipe_nesting.html
 ./recipe_pos.html
 ./shopping_list.html
 ./task.html
