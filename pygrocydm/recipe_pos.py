@@ -1,5 +1,3 @@
-from enum import Enum
-
 from .grocy_api_client import GrocyApiClient, GrocyEntity
 from .utils import parse_bool, parse_int, parse_float
 

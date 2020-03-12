@@ -14,7 +14,7 @@ from pygrocydm.product import Product
 from pygrocydm.product_group import ProductGroup
 from pygrocydm.quantity_unit import QuantityUnit
 from pygrocydm.quantity_unit_conversion import QuantityUnitConversion
-from pygrocydm.recipe import Recipe, RecipeType
+from pygrocydm.recipe import Recipe
 from pygrocydm.recipe_pos import RecipePos
 from pygrocydm.shopping_list import ShoppingList, ShoppingListItem
 from pygrocydm.task import Task

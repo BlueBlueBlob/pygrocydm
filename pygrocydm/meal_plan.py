@@ -18,7 +18,8 @@ class MealPlan(GrocyEntity):
         self.__day = parse_date(parsed_json.get('day'))
         self.__type = parsed_json.get('type')
         self.__recipe_id = parse_int(parsed_json.get('recipe_id'), None)
-        self.__recipe_servings = parse_int(parsed_json.get('recipe_servings'), None)
+        self.__recipe_servings = parse_int(
+            parsed_json.get('recipe_servings'), None)
         self.__note = parsed_json.get('note', None)
         self.__product_id = parse_int(
             parsed_json.get('product_id'), None)

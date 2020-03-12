@@ -18,7 +18,8 @@ class Recipe(GrocyEntity):
         self.__description = parsed_json.get('description', None)
         self.__picture_file_name = parsed_json.get('picture_file_name', None)
         self.__base_servings = parse_int(parsed_json.get('base_servings'))
-        self.__desired_servings = parse_int(parsed_json.get('desired_servings'))
+        self.__desired_servings = parse_int(
+            parsed_json.get('desired_servings'))
         self.__not_check_shoppinglist = parse_bool(
             parsed_json.get('not_check_shoppinglist'), False)
         self.__type = parsed_json.get('type')
