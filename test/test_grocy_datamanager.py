@@ -15,6 +15,7 @@ from pygrocydm.product_group import ProductGroup
 from pygrocydm.quantity_unit import QuantityUnit
 from pygrocydm.quantity_unit_conversion import QuantityUnitConversion
 from pygrocydm.recipe import Recipe
+from pygrocydm.recipe_nesting import RecipeNesting
 from pygrocydm.recipe_pos import RecipePos
 from pygrocydm.shopping_list import ShoppingList, ShoppingListItem
 from pygrocydm.task import Task
@@ -241,6 +242,13 @@ class TestGrocyDataManager(TestCase):
         assert len(recipes_pos) >=1
         for recipe_pos in recipes_pos:
             assert isinstance(recipe_pos, RecipePos)
+
+    def test_recipes_nestings_valid(self):
+        recipes_nestings = self.gdm.recipes_nestings().list
+        assert isinstance(recipes_nestings, tuple)
+        assert len(recipes_nestings) >=1
+        for recipe_nesting in recipes_nestings:
+            assert isinstance(recipe_nesting, RecipeNesting)
 
     @responses.activate
     def test_get_userfields_valid(self):

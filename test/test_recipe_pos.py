@@ -29,7 +29,7 @@ class TestRecipePos(TestCase):
             "row_created_timestamp": "2020-03-12 00:50:11",
             "variable_amount": null,
             "price_factor": "1.0"
-          }"""
+        }"""
         moked_keys = json.loads(moked_recipe_pos_json).keys()
         self.assertCountEqual(list(recipe_pos_keys), list(moked_keys))
 
