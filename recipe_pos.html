@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.meal_plan API documentation</title>
+<title>pygrocydm.recipe_pos API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,75 +17,74 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.meal_plan</code></h1>
+<h1 class="title">Module <code>pygrocydm.recipe_pos</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from enum import Enum
-from datetime import datetime
+<pre><code class="python">from .grocy_api_client import GrocyApiClient, GrocyEntity
+from .utils import parse_bool, parse_int, parse_float
 
-from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_float, parse_int, parse_date
-
-MEAL_PLAN_ENDPOINT = &#39;objects/meal_plan&#39;
+RECIPES_POS_ENDPOINT = &#39;objects/recipes_pos&#39;
 
 
-class MealPlanType(Enum):
-    NOTE = &#34;note&#34;
-    PRODUCT = &#34;product&#34;
-    RECIPE = &#34;recipe&#34;
-
-
-class MealPlan(GrocyEntity):
+class RecipePos(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
-        self.__day = parse_date(parsed_json.get(&#39;day&#39;))
-        self.__type = parsed_json.get(&#39;type&#39;)
-        self.__recipe_id = parse_int(parsed_json.get(&#39;recipe_id&#39;), None)
-        self.__recipe_servings = parse_int(
-            parsed_json.get(&#39;recipe_servings&#39;), None)
+        self.__recipe_id = parse_int(parsed_json.get(&#39;recipe_id&#39;))
+        self.__product_id = parse_int(parsed_json.get(&#39;product_id&#39;))
+        self.__amount = parse_float(parsed_json.get(&#39;amount&#39;))
         self.__note = parsed_json.get(&#39;note&#39;, None)
-        self.__product_id = parse_int(
-            parsed_json.get(&#39;product_id&#39;), None)
-        self.__product_amount = parse_float(
-            parsed_json.get(&#39;product_amount&#39;), 0)
-        self.__product_qu_id = parse_int(
-            parsed_json.get(&#39;product_qu_id&#39;), None)
+        self.__qu_id = parse_int(parsed_json.get(&#39;qu_id&#39;))
+        self.__only_check_single_unit_in_stock = parse_bool(
+            parsed_json.get(&#39;only_check_single_unit_in_stock&#39;), False)
+        self.__ingredient_group = parsed_json.get(&#39;ingredient_group&#39;, None)
+        self.__not_check_stock_fulfillment = parse_bool(
+            parsed_json.get(&#39;not_check_stock_fulfillment&#39;), False)
+        self.__variable_amount = parsed_json.get(&#39;variable_amount&#39;, None)
+        self.__price_factor = parse_float(parsed_json.get(&#39;price_factor&#39;))
         super().__init__(api, endpoint, parsed_json)
-
-    @property
-    def day(self) -&gt; datetime:
-        return self.__day
-
-    @property
-    def type(self) -&gt; str:
-        return self.__type
 
     @property
     def recipe_id(self) -&gt; int:
         return self.__recipe_id
 
     @property
-    def recipe_servings(self) -&gt; int:
-        return self.__recipe_servings
+    def product_id(self) -&gt; int:
+        return self.__product_id
+
+    @property
+    def amount(self) -&gt; float:
+        return self.__amount
 
     @property
     def note(self) -&gt; str:
         return self.__note
 
     @property
-    def product_id(self) -&gt; int:
-        return self.__product_id
+    def qu_id(self) -&gt; int:
+        return self.__qu_id
 
     @property
-    def product_amount(self) -&gt; float:
-        return self.__product_amount
+    def only_check_single_unit_in_stock(self) -&gt; bool:
+        return self.__only_check_single_unit_in_stock
 
     @property
-    def product_qu_id(self) -&gt; id:
-        return self.__product_qu_id</code></pre>
+    def ingredient_group(self) -&gt; str:
+        return self.__ingredient_group
+
+    @property
+    def not_check_stock_fulfillment(self) -&gt; bool:
+        return self.__not_check_stock_fulfillment
+
+    @property
+    def variable_amount(self) -&gt; str:
+        return self.__variable_amount
+
+    @property
+    def price_factor(self) -&gt; float:
+        return self.__price_factor</code></pre>
 </details>
 </section>
 <section>
@@ -97,8 +96,8 @@ class MealPlan(GrocyEntity):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.meal_plan.MealPlan"><code class="flex name class">
-<span>class <span class="ident">MealPlan</span></span>
+<dt id="pygrocydm.recipe_pos.RecipePos"><code class="flex name class">
+<span>class <span class="ident">RecipePos</span></span>
 <span>(</span><span>api, endpoint, parsed_json)</span>
 </code></dt>
 <dd>
@@ -107,53 +106,61 @@ class MealPlan(GrocyEntity):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class MealPlan(GrocyEntity):
+<pre><code class="python">class RecipePos(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
-        self.__day = parse_date(parsed_json.get(&#39;day&#39;))
-        self.__type = parsed_json.get(&#39;type&#39;)
-        self.__recipe_id = parse_int(parsed_json.get(&#39;recipe_id&#39;), None)
-        self.__recipe_servings = parse_int(
-            parsed_json.get(&#39;recipe_servings&#39;), None)
+        self.__recipe_id = parse_int(parsed_json.get(&#39;recipe_id&#39;))
+        self.__product_id = parse_int(parsed_json.get(&#39;product_id&#39;))
+        self.__amount = parse_float(parsed_json.get(&#39;amount&#39;))
         self.__note = parsed_json.get(&#39;note&#39;, None)
-        self.__product_id = parse_int(
-            parsed_json.get(&#39;product_id&#39;), None)
-        self.__product_amount = parse_float(
-            parsed_json.get(&#39;product_amount&#39;), 0)
-        self.__product_qu_id = parse_int(
-            parsed_json.get(&#39;product_qu_id&#39;), None)
+        self.__qu_id = parse_int(parsed_json.get(&#39;qu_id&#39;))
+        self.__only_check_single_unit_in_stock = parse_bool(
+            parsed_json.get(&#39;only_check_single_unit_in_stock&#39;), False)
+        self.__ingredient_group = parsed_json.get(&#39;ingredient_group&#39;, None)
+        self.__not_check_stock_fulfillment = parse_bool(
+            parsed_json.get(&#39;not_check_stock_fulfillment&#39;), False)
+        self.__variable_amount = parsed_json.get(&#39;variable_amount&#39;, None)
+        self.__price_factor = parse_float(parsed_json.get(&#39;price_factor&#39;))
         super().__init__(api, endpoint, parsed_json)
-
-    @property
-    def day(self) -&gt; datetime:
-        return self.__day
-
-    @property
-    def type(self) -&gt; str:
-        return self.__type
 
     @property
     def recipe_id(self) -&gt; int:
         return self.__recipe_id
 
     @property
-    def recipe_servings(self) -&gt; int:
-        return self.__recipe_servings
+    def product_id(self) -&gt; int:
+        return self.__product_id
+
+    @property
+    def amount(self) -&gt; float:
+        return self.__amount
 
     @property
     def note(self) -&gt; str:
         return self.__note
 
     @property
-    def product_id(self) -&gt; int:
-        return self.__product_id
+    def qu_id(self) -&gt; int:
+        return self.__qu_id
 
     @property
-    def product_amount(self) -&gt; float:
-        return self.__product_amount
+    def only_check_single_unit_in_stock(self) -&gt; bool:
+        return self.__only_check_single_unit_in_stock
 
     @property
-    def product_qu_id(self) -&gt; id:
-        return self.__product_qu_id</code></pre>
+    def ingredient_group(self) -&gt; str:
+        return self.__ingredient_group
+
+    @property
+    def not_check_stock_fulfillment(self) -&gt; bool:
+        return self.__not_check_stock_fulfillment
+
+    @property
+    def variable_amount(self) -&gt; str:
+        return self.__variable_amount
+
+    @property
+    def price_factor(self) -&gt; float:
+        return self.__price_factor</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
@@ -161,7 +168,7 @@ class MealPlan(GrocyEntity):
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pygrocydm.meal_plan.MealPlan.day"><code class="name">var <span class="ident">day</span></code></dt>
+<dt id="pygrocydm.recipe_pos.RecipePos.amount"><code class="name">var <span class="ident">amount</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -169,11 +176,35 @@ class MealPlan(GrocyEntity):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def day(self) -&gt; datetime:
-    return self.__day</code></pre>
+def amount(self) -&gt; float:
+    return self.__amount</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.meal_plan.MealPlan.note"><code class="name">var <span class="ident">note</span></code></dt>
+<dt id="pygrocydm.recipe_pos.RecipePos.ingredient_group"><code class="name">var <span class="ident">ingredient_group</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def ingredient_group(self) -&gt; str:
+    return self.__ingredient_group</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.recipe_pos.RecipePos.not_check_stock_fulfillment"><code class="name">var <span class="ident">not_check_stock_fulfillment</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def not_check_stock_fulfillment(self) -&gt; bool:
+    return self.__not_check_stock_fulfillment</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.recipe_pos.RecipePos.note"><code class="name">var <span class="ident">note</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -185,7 +216,7 @@ def note(self) -&gt; str:
     return self.__note</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.meal_plan.MealPlan.product_amount"><code class="name">var <span class="ident">product_amount</span></code></dt>
+<dt id="pygrocydm.recipe_pos.RecipePos.only_check_single_unit_in_stock"><code class="name">var <span class="ident">only_check_single_unit_in_stock</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -193,11 +224,23 @@ def note(self) -&gt; str:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def product_amount(self) -&gt; float:
-    return self.__product_amount</code></pre>
+def only_check_single_unit_in_stock(self) -&gt; bool:
+    return self.__only_check_single_unit_in_stock</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.meal_plan.MealPlan.product_id"><code class="name">var <span class="ident">product_id</span></code></dt>
+<dt id="pygrocydm.recipe_pos.RecipePos.price_factor"><code class="name">var <span class="ident">price_factor</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def price_factor(self) -&gt; float:
+    return self.__price_factor</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.recipe_pos.RecipePos.product_id"><code class="name">var <span class="ident">product_id</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -209,7 +252,7 @@ def product_id(self) -&gt; int:
     return self.__product_id</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.meal_plan.MealPlan.product_qu_id"><code class="name">var <span class="ident">product_qu_id</span></code></dt>
+<dt id="pygrocydm.recipe_pos.RecipePos.qu_id"><code class="name">var <span class="ident">qu_id</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -217,11 +260,11 @@ def product_id(self) -&gt; int:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def product_qu_id(self) -&gt; id:
-    return self.__product_qu_id</code></pre>
+def qu_id(self) -&gt; int:
+    return self.__qu_id</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.meal_plan.MealPlan.recipe_id"><code class="name">var <span class="ident">recipe_id</span></code></dt>
+<dt id="pygrocydm.recipe_pos.RecipePos.recipe_id"><code class="name">var <span class="ident">recipe_id</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -233,7 +276,7 @@ def recipe_id(self) -&gt; int:
     return self.__recipe_id</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.meal_plan.MealPlan.recipe_servings"><code class="name">var <span class="ident">recipe_servings</span></code></dt>
+<dt id="pygrocydm.recipe_pos.RecipePos.variable_amount"><code class="name">var <span class="ident">variable_amount</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -241,56 +284,9 @@ def recipe_id(self) -&gt; int:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def recipe_servings(self) -&gt; int:
-    return self.__recipe_servings</code></pre>
+def variable_amount(self) -&gt; str:
+    return self.__variable_amount</code></pre>
 </details>
-</dd>
-<dt id="pygrocydm.meal_plan.MealPlan.type"><code class="name">var <span class="ident">type</span></code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def type(self) -&gt; str:
-    return self.__type</code></pre>
-</details>
-</dd>
-</dl>
-</dd>
-<dt id="pygrocydm.meal_plan.MealPlanType"><code class="flex name class">
-<span>class <span class="ident">MealPlanType</span></span>
-<span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
-</code></dt>
-<dd>
-<section class="desc"><p>An enumeration.</p></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">class MealPlanType(Enum):
-    NOTE = &#34;note&#34;
-    PRODUCT = &#34;product&#34;
-    RECIPE = &#34;recipe&#34;</code></pre>
-</details>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li>enum.Enum</li>
-</ul>
-<h3>Class variables</h3>
-<dl>
-<dt id="pygrocydm.meal_plan.MealPlanType.NOTE"><code class="name">var <span class="ident">NOTE</span></code></dt>
-<dd>
-<section class="desc"></section>
-</dd>
-<dt id="pygrocydm.meal_plan.MealPlanType.PRODUCT"><code class="name">var <span class="ident">PRODUCT</span></code></dt>
-<dd>
-<section class="desc"></section>
-</dd>
-<dt id="pygrocydm.meal_plan.MealPlanType.RECIPE"><code class="name">var <span class="ident">RECIPE</span></code></dt>
-<dd>
-<section class="desc"></section>
 </dd>
 </dl>
 </dd>
@@ -311,24 +307,18 @@ def type(self) -&gt; str:
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.meal_plan.MealPlan" href="#pygrocydm.meal_plan.MealPlan">MealPlan</a></code></h4>
-<ul class="two-column">
-<li><code><a title="pygrocydm.meal_plan.MealPlan.day" href="#pygrocydm.meal_plan.MealPlan.day">day</a></code></li>
-<li><code><a title="pygrocydm.meal_plan.MealPlan.note" href="#pygrocydm.meal_plan.MealPlan.note">note</a></code></li>
-<li><code><a title="pygrocydm.meal_plan.MealPlan.product_amount" href="#pygrocydm.meal_plan.MealPlan.product_amount">product_amount</a></code></li>
-<li><code><a title="pygrocydm.meal_plan.MealPlan.product_id" href="#pygrocydm.meal_plan.MealPlan.product_id">product_id</a></code></li>
-<li><code><a title="pygrocydm.meal_plan.MealPlan.product_qu_id" href="#pygrocydm.meal_plan.MealPlan.product_qu_id">product_qu_id</a></code></li>
-<li><code><a title="pygrocydm.meal_plan.MealPlan.recipe_id" href="#pygrocydm.meal_plan.MealPlan.recipe_id">recipe_id</a></code></li>
-<li><code><a title="pygrocydm.meal_plan.MealPlan.recipe_servings" href="#pygrocydm.meal_plan.MealPlan.recipe_servings">recipe_servings</a></code></li>
-<li><code><a title="pygrocydm.meal_plan.MealPlan.type" href="#pygrocydm.meal_plan.MealPlan.type">type</a></code></li>
-</ul>
-</li>
-<li>
-<h4><code><a title="pygrocydm.meal_plan.MealPlanType" href="#pygrocydm.meal_plan.MealPlanType">MealPlanType</a></code></h4>
+<h4><code><a title="pygrocydm.recipe_pos.RecipePos" href="#pygrocydm.recipe_pos.RecipePos">RecipePos</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.meal_plan.MealPlanType.NOTE" href="#pygrocydm.meal_plan.MealPlanType.NOTE">NOTE</a></code></li>
-<li><code><a title="pygrocydm.meal_plan.MealPlanType.PRODUCT" href="#pygrocydm.meal_plan.MealPlanType.PRODUCT">PRODUCT</a></code></li>
-<li><code><a title="pygrocydm.meal_plan.MealPlanType.RECIPE" href="#pygrocydm.meal_plan.MealPlanType.RECIPE">RECIPE</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.amount" href="#pygrocydm.recipe_pos.RecipePos.amount">amount</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.ingredient_group" href="#pygrocydm.recipe_pos.RecipePos.ingredient_group">ingredient_group</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.not_check_stock_fulfillment" href="#pygrocydm.recipe_pos.RecipePos.not_check_stock_fulfillment">not_check_stock_fulfillment</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.note" href="#pygrocydm.recipe_pos.RecipePos.note">note</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.only_check_single_unit_in_stock" href="#pygrocydm.recipe_pos.RecipePos.only_check_single_unit_in_stock">only_check_single_unit_in_stock</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.price_factor" href="#pygrocydm.recipe_pos.RecipePos.price_factor">price_factor</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.product_id" href="#pygrocydm.recipe_pos.RecipePos.product_id">product_id</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.qu_id" href="#pygrocydm.recipe_pos.RecipePos.qu_id">qu_id</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.recipe_id" href="#pygrocydm.recipe_pos.RecipePos.recipe_id">recipe_id</a></code></li>
+<li><code><a title="pygrocydm.recipe_pos.RecipePos.variable_amount" href="#pygrocydm.recipe_pos.RecipePos.variable_amount">variable_amount</a></code></li>
 </ul>
 </li>
 </ul>
