@@ -11,6 +11,7 @@ from .quantity_unit import QUANTITY_UNITS_ENDPOINT, QuantityUnit
 from .quantity_unit_conversion import (QUANTITY_UNIT_CONVERTIONS_ENDPOINT,
                                        QuantityUnitConversion)
 from .recipe import RECIPES_ENDPOINT, Recipe
+from .recipe_pos import RECIPES_POS_ENDPOINT, RecipePos
 from .shopping_list import (SHOPPING_LIST_ENDPOINT, SHOPPING_LISTS_ENDPOINT,
                             ShoppingList, ShoppingListItem)
 from .task import TASKS_ENDPOINT, Task
@@ -104,3 +105,7 @@ class GrocyDataManager():
     def recipes(self) -> GrocyEntityList:
         cls = Recipe
         return GrocyEntityList(self.__api, cls, RECIPES_ENDPOINT)
+
+    def recipes_pos(self) -> GrocyEntityList:
+        cls = RecipePos
+        return GrocyEntityList(self.__api, cls, RECIPES_POS_ENDPOINT)
