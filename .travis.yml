@@ -29,7 +29,6 @@ script:
 
 after_success:
   - docker-compose down
-  - rm ./Dockerfile-grocy
   - coveralls
   - coverage xml
   - curl https://deepsource.io/cli | sh
