@@ -1,4 +1,4 @@
 """ The pygrocydm module """
-from .grocy_datamanager import GrocyDataManager
+from .grocy_api import GrocyAPI
 
 name = "pygrocydm"
