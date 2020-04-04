@@ -4,7 +4,7 @@ from test.test_const import CONST_BASE_URL, CONST_PORT, CONST_SSL
 from unittest import TestCase
 
 from pygrocydm.grocy_api_client import GrocyApiClient
-from pygrocydm.quantity_unit import QUANTITY_UNITS_ENDPOINT, QuantityUnit
+from pygrocydm.entities.quantity_unit import QUANTITY_UNITS_ENDPOINT, QuantityUnit
 
 
 class TestQuantityUnit(TestCase):
