@@ -22,21 +22,21 @@ https://blueblueblob.github.io/pygrocydm/
 ## Usage
 Import the package: 
 ```python
-from pygrocydm import GrocyDataManager
+from pygrocydm import GrocyAPI
 ```
 
 Obtain a grocy data manager instance:
 ```python
-gdm = GrocyDataManager("https://example.com", "GROCY_API_KEY")
+gapi = GrocyAPI("https://example.com", "GROCY_API_KEY")
 ```
 or
 ```python
-gdm = GrocyDataManager("https://example.com", "GROCY_API_KEY", port = 9192, verify_ssl = True)
+gapi = GrocyAPI("https://example.com", "GROCY_API_KEY", port = 9192, verify_ssl = True)
 ```
 
-Product list :
+Product list (Generic entities API)
 ```python
-products = gdm.products()
+products = gapi.generic_entities().products()
 products_list = products.list
 for product in products_list:
     print(vars(product))
@@ -56,6 +56,16 @@ else:
     new_product_id = products.add(new_product)
 ```
 
+Recipes API :
+```python
+recipes_api = gapi.recipes()
+for recipe in recipes_api.fullfilment_list:
+    if recipe.recipe_id == 5:
+        recipe.add_not_fulfilled_products_to_shoppinglist()
+    else:
+        recipe.consume()
+recipes_api.refresh()
+```
 
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm?ref=badge_large)
