@@ -1,4 +1,4 @@
-from .grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
 
 QUANTITY_UNITS_ENDPOINT = 'objects/quantity_units'
 

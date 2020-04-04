@@ -1,4 +1,4 @@
-from .grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
 
 TASK_CATEGORIES_ENDPOINT = 'objects/task_categories'
 
