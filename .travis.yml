@@ -11,8 +11,8 @@ services:
   - docker
 
 before_install:
-  - curl -L https://github.com/grocy/grocy-docker/raw/master/grocy.env > grocy.env
-  - curl -L https://github.com/grocy/grocy-docker/raw/master/docker-compose.yml > docker-compose.yml
+  - curl -L https://github.com/grocy/grocy-docker/raw/v2.6.2-1/grocy.env > grocy.env
+  - curl -L https://github.com/grocy/grocy-docker/raw/v2.6.2-1/docker-compose.yml > docker-compose.yml
   - docker-compose pull
   - GROCY_MODE=demo docker-compose up -d
   - curl -kX GET https://localhost
