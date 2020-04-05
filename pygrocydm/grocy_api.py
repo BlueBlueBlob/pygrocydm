@@ -4,9 +4,8 @@ from pygrocydm.recipes import Recipes
 
 
 class GrocyAPI():
-    """
-    Main class.
-    """
+    """ Main class """
+
     def __init__(
             self, base_url, api_key,
             port: int = DEFAULT_PORT_NUMBER,

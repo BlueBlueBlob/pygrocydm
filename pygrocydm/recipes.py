@@ -17,11 +17,14 @@ class Recipe():
             parsed_json.get('need_fulfilled'), False)
         self.__need_fulfilled_with_shopping_list = parse_bool(
             parsed_json.get('need_fulfilled_with_shopping_list'), False)
-        self.__missing_products_count = parse_int(parsed_json.get('missing_products_count'))
+        self.__missing_products_count = parse_int(
+            parsed_json.get('missing_products_count'))
         self.__costs = parse_float(parsed_json.get('costs'), 0)
         self.__calories = parse_float(parsed_json.get('calories'), 0)
 
-    def add_not_fulfilled_products_to_shoppinglist(self, exclude_products: List[int] = None):
+    def add_not_fulfilled_products_to_shoppinglist(
+                self,
+                exclude_products: List[int] = None):
         endpoint = f"{self.__endpoint}/add-not-fulfilled-products-to-shoppinglist"
         data = {}
         if exclude_products:
@@ -73,7 +76,8 @@ class Recipes():
         endpoint = f"{RECIPES_ENDPOINT}/fulfillment"
         parsed_json = self.__api_client.do_request("GET", endpoint)
         if parsed_json:
-            self.__fullfilment_list = ([ Recipe(self.__api_client, response) for response in parsed_json ])
+            self.__fullfilment_list = ([Recipe(self.__api_client, response)
+                                                    for response in parsed_json])
 
     @property
     def fullfilment_list(self) -> Tuple[Recipe]:

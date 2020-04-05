@@ -7,12 +7,12 @@ from .entities.product import PRODUCTS_ENDPOINT, Product
 from .entities.product_group import PRODUCT_GROUPS_ENDPOINT, ProductGroup
 from .entities.quantity_unit import QUANTITY_UNITS_ENDPOINT, QuantityUnit
 from .entities.quantity_unit_conversion import (QUANTITY_UNIT_CONVERTIONS_ENDPOINT,
-                                       QuantityUnitConversion)
+                                                                                           QuantityUnitConversion)
 from .entities.recipe import RECIPES_ENDPOINT, Recipe
 from .entities.recipe_nesting import RECIPES_NESTINGS_ENDPOINT, RecipeNesting
 from .entities.recipe_pos import RECIPES_POS_ENDPOINT, RecipePos
 from .entities.shopping_list import (SHOPPING_LIST_ENDPOINT, SHOPPING_LISTS_ENDPOINT,
-                            ShoppingList, ShoppingListItem)
+                                                                    ShoppingList, ShoppingListItem)
 from .entities.task import TASKS_ENDPOINT, Task
 from .entities.task_category import TASK_CATEGORIES_ENDPOINT, TaskCategory
 from .entities.userentity import USERENTITIES_ENDPOINT, UserEntity
