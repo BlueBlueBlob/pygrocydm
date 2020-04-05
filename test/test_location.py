@@ -4,7 +4,7 @@ from test.test_const import CONST_BASE_URL, CONST_PORT, CONST_SSL
 from unittest import TestCase
 
 from pygrocydm.grocy_api_client import GrocyApiClient
-from pygrocydm.location import LOCATION_ENDPOINT, Location
+from pygrocydm.entities.location import LOCATION_ENDPOINT, Location
 
 
 class TestLocation(TestCase):

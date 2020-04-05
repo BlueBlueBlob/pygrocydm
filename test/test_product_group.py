@@ -4,7 +4,7 @@ from test.test_const import CONST_BASE_URL, CONST_PORT, CONST_SSL
 from unittest import TestCase
 
 from pygrocydm.grocy_api_client import GrocyApiClient
-from pygrocydm.product_group import PRODUCT_GROUPS_ENDPOINT, ProductGroup
+from pygrocydm.entities.product_group import PRODUCT_GROUPS_ENDPOINT, ProductGroup
 
 
 class TestProductGroup(TestCase):

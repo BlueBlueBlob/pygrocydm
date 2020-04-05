@@ -1,14 +1,14 @@
-from .grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.utils import parse_bool
 
-EQUIPMENT_ENDPOINT = 'objects/equipment'
+LOCATION_ENDPOINT = 'objects/locations'
 
 
-class Equipment(GrocyEntity):
+class Location(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
         self.__name = parsed_json.get('name')
         self.__description = parsed_json.get('description', None)
-        self.__instruction_manual_file_name = parsed_json.get(
-            'instruction_manual_file_name', None)
+        self.__is_freezer = parse_bool(parsed_json.get('is_freezer'), False)
         super().__init__(api, endpoint, parsed_json)
 
     @property
@@ -20,5 +20,5 @@ class Equipment(GrocyEntity):
         return self.__description
 
     @property
-    def instruction_manual_file_name(self) -> str:
-        return self.__instruction_manual_file_name
+    def is_freezer(self) -> bool:
+        return self.__is_freezer

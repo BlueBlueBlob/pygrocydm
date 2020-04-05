@@ -1,7 +1,6 @@
 import json
 from datetime import datetime
 from typing import Tuple
-from urllib.parse import urljoin
 
 import requests
 
@@ -26,16 +25,29 @@ class GrocyApiClient():
             }
 
     def do_request(self, request_type: str, end_url: str, data=None):
-        req_url = urljoin(self.__base_url, end_url)
+        req_url = f"{self.__base_url}{end_url}"
+        resp = None
         if request_type == "GET":
             resp = requests.get(
                 req_url, verify=self.__verify_ssl, headers=self.__headers)
         if request_type == "POST":
-            if data:
+            if isinstance(data, str):
+                up_header = self.__headers.copy()
+                up_header['accept'] = '*/*'
+                up_header['Content-Type'] = 'application/json'
+                resp = requests.post(
+                    req_url, verify=self.__verify_ssl,
+                    headers=up_header,
+                    data=data)
+            elif isinstance(data, dict):
                 resp = requests.post(
                     req_url, verify=self.__verify_ssl,
                     headers=self.__headers,
                     data=data)
+            else:
+                resp = requests.post(
+                    req_url, verify=self.__verify_ssl,
+                    headers=self.__headers)
         if request_type == "PUT":
             if data:
                 up_header = self.__headers.copy()
@@ -49,6 +61,7 @@ class GrocyApiClient():
             resp = requests.delete(
                 req_url, verify=self.__verify_ssl,
                 headers=self.__headers)
+
         resp.raise_for_status()
         if len(resp.content) > 0:
             return resp.json()

@@ -1,9 +1,9 @@
-from .grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
 
-TASK_CATEGORIES_ENDPOINT = 'objects/task_categories'
+PRODUCT_GROUPS_ENDPOINT = 'objects/product_groups'
 
 
-class TaskCategory(GrocyEntity):
+class ProductGroup(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
         self.__name = parsed_json.get('name')
         self.__description = parsed_json.get('description', None)

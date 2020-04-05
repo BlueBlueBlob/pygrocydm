@@ -4,7 +4,7 @@ from test.test_const import CONST_BASE_URL, CONST_PORT, CONST_SSL
 from unittest import TestCase
 
 from pygrocydm.grocy_api_client import GrocyApiClient
-from pygrocydm.shopping_list import (SHOPPING_LIST_ENDPOINT,
+from pygrocydm.entities.shopping_list import (SHOPPING_LIST_ENDPOINT,
                                      SHOPPING_LISTS_ENDPOINT, ShoppingList,
                                      ShoppingListItem)
 

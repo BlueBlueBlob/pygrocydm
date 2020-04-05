@@ -1,5 +1,5 @@
-from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_bool
+from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.utils import parse_bool
 
 USERENTITIES_ENDPOINT = 'objects/userentities'
 

@@ -1,5 +1,5 @@
-from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_bool, parse_float, parse_int
+from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.utils import parse_bool, parse_float, parse_int
 
 SHOPPING_LISTS_ENDPOINT = 'objects/shopping_lists'
 SHOPPING_LIST_ENDPOINT = 'objects/shopping_list'

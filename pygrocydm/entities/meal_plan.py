@@ -1,8 +1,8 @@
 from enum import Enum
 from datetime import datetime
 
-from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_float, parse_int, parse_date
+from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.utils import parse_float, parse_int, parse_date
 
 MEAL_PLAN_ENDPOINT = 'objects/meal_plan'
 

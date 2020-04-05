@@ -3,7 +3,7 @@ from datetime import datetime
 from test.test_const import CONST_BASE_URL, CONST_PORT, CONST_SSL
 from unittest import TestCase
 
-from pygrocydm.userfield import USERFIELDS_ENDPOINT, Userfield, UserfieldType
+from pygrocydm.entities.userfield import USERFIELDS_ENDPOINT, Userfield, UserfieldType
 from pygrocydm.grocy_api_client import GrocyApiClient
 
 

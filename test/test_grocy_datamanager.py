@@ -4,33 +4,34 @@ from unittest import TestCase
 import responses
 from requests.exceptions import HTTPError
 
-from pygrocydm import GrocyDataManager
-from pygrocydm.battery import Battery
-from pygrocydm.chore import Chore
-from pygrocydm.equipment import Equipment
-from pygrocydm.location import Location
-from pygrocydm.meal_plan import MealPlan
-from pygrocydm.product import Product
-from pygrocydm.product_group import ProductGroup
-from pygrocydm.quantity_unit import QuantityUnit
-from pygrocydm.quantity_unit_conversion import QuantityUnitConversion
-from pygrocydm.recipe import Recipe
-from pygrocydm.recipe_nesting import RecipeNesting
-from pygrocydm.recipe_pos import RecipePos
-from pygrocydm.shopping_list import ShoppingList, ShoppingListItem
-from pygrocydm.task import Task
-from pygrocydm.task_category import TaskCategory
-from pygrocydm.userentity import UserEntity
-from pygrocydm.userfield import Userfield
-from pygrocydm.userobject import UserObject
+from pygrocydm import GrocyAPI
+from pygrocydm.grocy_datamanager import GrocyDataManager
+from pygrocydm.entities.battery import Battery
+from pygrocydm.entities.chore import Chore
+from pygrocydm.entities.equipment import Equipment
+from pygrocydm.entities.location import Location
+from pygrocydm.entities.meal_plan import MealPlan
+from pygrocydm.entities.product import Product
+from pygrocydm.entities.product_group import ProductGroup
+from pygrocydm.entities.quantity_unit import QuantityUnit
+from pygrocydm.entities.quantity_unit_conversion import QuantityUnitConversion
+from pygrocydm.entities.recipe import Recipe
+from pygrocydm.entities.recipe_nesting import RecipeNesting
+from pygrocydm.entities.recipe_pos import RecipePos
+from pygrocydm.entities.shopping_list import ShoppingList, ShoppingListItem
+from pygrocydm.entities.task import Task
+from pygrocydm.entities.task_category import TaskCategory
+from pygrocydm.entities.userentity import UserEntity
+from pygrocydm.entities.userfield import Userfield
+from pygrocydm.entities.userobject import UserObject
 
 
 class TestGrocyDataManager(TestCase):
 
     def setUp(self):
-        self.gdm = GrocyDataManager(CONST_BASE_URL, "api_key")
-        self.gdm = None
-        self.gdm = GrocyDataManager(CONST_BASE_URL, "demo_mode",  verify_ssl = CONST_SSL, port = CONST_PORT)
+        dummy = GrocyAPI(CONST_BASE_URL, "api_key",  verify_ssl = CONST_SSL, port = CONST_PORT)
+        grocyapi = GrocyAPI(CONST_BASE_URL, "demo_mode",  verify_ssl = CONST_SSL, port = CONST_PORT)
+        self.gdm = grocyapi.generic_entities()
 
     def test_init(self):
         assert isinstance(self.gdm, GrocyDataManager)

@@ -4,7 +4,7 @@ from test.test_const import CONST_BASE_URL, CONST_PORT, CONST_SSL
 from unittest import TestCase
 
 from pygrocydm.grocy_api_client import GrocyApiClient
-from pygrocydm.task_category import TASK_CATEGORIES_ENDPOINT, TaskCategory
+from pygrocydm.entities.task_category import TASK_CATEGORIES_ENDPOINT, TaskCategory
 
 
 class TestTaskCategory(TestCase):
