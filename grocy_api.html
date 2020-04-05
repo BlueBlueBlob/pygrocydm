@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.task_category API documentation</title>
+<title>pygrocydm.grocy_api API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,31 +17,38 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.task_category</code></h1>
+<h1 class="title">Module <code>pygrocydm.grocy_api</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from .grocy_api_client import GrocyApiClient, GrocyEntity
+<pre><code class="python">from pygrocydm.grocy_api_client import DEFAULT_PORT_NUMBER, GrocyApiClient
+from pygrocydm.grocy_datamanager import GrocyDataManager
+from pygrocydm.recipes import Recipes
 
-TASK_CATEGORIES_ENDPOINT = &#39;objects/task_categories&#39;
 
+class GrocyAPI():
+    &#34;&#34;&#34; Main class &#34;&#34;&#34;
 
-class TaskCategory(GrocyEntity):
-    def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
-        self.__name = parsed_json.get(&#39;name&#39;)
-        self.__description = parsed_json.get(&#39;description&#39;, None)
-        super().__init__(api, endpoint, parsed_json)
+    def __init__(
+            self, base_url, api_key,
+            port: int = DEFAULT_PORT_NUMBER,
+            verify_ssl=True):
+        &#34;&#34;&#34;
+        Constructor requiring base url and API key.
+        Attributes:
+            base_url: Grocy server url.
+            api_key: Grocy API key.
+        &#34;&#34;&#34;
+        self.__api_client = GrocyApiClient(base_url, api_key, port, verify_ssl)
 
-    @property
-    def name(self) -&gt; str:
-        return self.__name
+    def generic_entities(self) -&gt; GrocyDataManager:
+        return GrocyDataManager(self.__api_client)
 
-    @property
-    def description(self) -&gt; str:
-        return self.__description</code></pre>
+    def recipes(self) -&gt; Recipes:
+        return Recipes(self.__api_client)</code></pre>
 </details>
 </section>
 <section>
@@ -53,9 +60,49 @@ class TaskCategory(GrocyEntity):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.task_category.TaskCategory"><code class="flex name class">
-<span>class <span class="ident">TaskCategory</span></span>
-<span>(</span><span>api, endpoint, parsed_json)</span>
+<dt id="pygrocydm.grocy_api.GrocyAPI"><code class="flex name class">
+<span>class <span class="ident">GrocyAPI</span></span>
+<span>(</span><span>base_url, api_key, port=9192, verify_ssl=True)</span>
+</code></dt>
+<dd>
+<section class="desc"><p>Main class </p>
+<p>Constructor requiring base url and API key.</p>
+<h2 id="attributes">Attributes</h2>
+<dl>
+<dt><strong><code>base_url</code></strong></dt>
+<dd>Grocy server url.</dd>
+<dt><strong><code>api_key</code></strong></dt>
+<dd>Grocy API key.</dd>
+</dl></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class GrocyAPI():
+    &#34;&#34;&#34; Main class &#34;&#34;&#34;
+
+    def __init__(
+            self, base_url, api_key,
+            port: int = DEFAULT_PORT_NUMBER,
+            verify_ssl=True):
+        &#34;&#34;&#34;
+        Constructor requiring base url and API key.
+        Attributes:
+            base_url: Grocy server url.
+            api_key: Grocy API key.
+        &#34;&#34;&#34;
+        self.__api_client = GrocyApiClient(base_url, api_key, port, verify_ssl)
+
+    def generic_entities(self) -&gt; GrocyDataManager:
+        return GrocyDataManager(self.__api_client)
+
+    def recipes(self) -&gt; Recipes:
+        return Recipes(self.__api_client)</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="pygrocydm.grocy_api.GrocyAPI.generic_entities"><code class="name flex">
+<span>def <span class="ident">generic_entities</span></span>(<span>self)</span>
 </code></dt>
 <dd>
 <section class="desc"></section>
@@ -63,48 +110,21 @@ class TaskCategory(GrocyEntity):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class TaskCategory(GrocyEntity):
-    def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
-        self.__name = parsed_json.get(&#39;name&#39;)
-        self.__description = parsed_json.get(&#39;description&#39;, None)
-        super().__init__(api, endpoint, parsed_json)
-
-    @property
-    def name(self) -&gt; str:
-        return self.__name
-
-    @property
-    def description(self) -&gt; str:
-        return self.__description</code></pre>
-</details>
-<h3>Ancestors</h3>
-<ul class="hlist">
-<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
-</ul>
-<h3>Instance variables</h3>
-<dl>
-<dt id="pygrocydm.task_category.TaskCategory.description"><code class="name">var <span class="ident">description</span></code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def description(self) -&gt; str:
-    return self.__description</code></pre>
+<pre><code class="python">def generic_entities(self) -&gt; GrocyDataManager:
+    return GrocyDataManager(self.__api_client)</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.task_category.TaskCategory.name"><code class="name">var <span class="ident">name</span></code></dt>
+<dt id="pygrocydm.grocy_api.GrocyAPI.recipes"><code class="name flex">
+<span>def <span class="ident">recipes</span></span>(<span>self)</span>
+</code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">@property
-def name(self) -&gt; str:
-    return self.__name</code></pre>
+<pre><code class="python">def recipes(self) -&gt; Recipes:
+    return Recipes(self.__api_client)</code></pre>
 </details>
 </dd>
 </dl>
@@ -126,10 +146,10 @@ def name(self) -&gt; str:
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.task_category.TaskCategory" href="#pygrocydm.task_category.TaskCategory">TaskCategory</a></code></h4>
+<h4><code><a title="pygrocydm.grocy_api.GrocyAPI" href="#pygrocydm.grocy_api.GrocyAPI">GrocyAPI</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.task_category.TaskCategory.description" href="#pygrocydm.task_category.TaskCategory.description">description</a></code></li>
-<li><code><a title="pygrocydm.task_category.TaskCategory.name" href="#pygrocydm.task_category.TaskCategory.name">name</a></code></li>
+<li><code><a title="pygrocydm.grocy_api.GrocyAPI.generic_entities" href="#pygrocydm.grocy_api.GrocyAPI.generic_entities">generic_entities</a></code></li>
+<li><code><a title="pygrocydm.grocy_api.GrocyAPI.recipes" href="#pygrocydm.grocy_api.GrocyAPI.recipes">recipes</a></code></li>
 </ul>
 </li>
 </ul>

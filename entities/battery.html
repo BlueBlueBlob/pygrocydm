@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.battery API documentation</title>
+<title>pygrocydm.entities.battery API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,15 +17,15 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.battery</code></h1>
+<h1 class="title">Module <code>pygrocydm.entities.battery</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_int
+<pre><code class="python">from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.utils import parse_int
 
 BATTERIES_ENDPOINT = &#39;objects/batteries&#39;
 
@@ -66,7 +66,7 @@ class Battery(GrocyEntity):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.battery.Battery"><code class="flex name class">
+<dt id="pygrocydm.entities.battery.Battery"><code class="flex name class">
 <span>class <span class="ident">Battery</span></span>
 <span>(</span><span>api, endpoint, parsed_json)</span>
 </code></dt>
@@ -104,11 +104,11 @@ class Battery(GrocyEntity):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
+<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="../grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pygrocydm.battery.Battery.charge_interval_days"><code class="name">var <span class="ident">charge_interval_days</span></code></dt>
+<dt id="pygrocydm.entities.battery.Battery.charge_interval_days"><code class="name">var <span class="ident">charge_interval_days</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -120,7 +120,7 @@ def charge_interval_days(self) -&gt; int:
     return self.__charge_interval_days</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.battery.Battery.description"><code class="name">var <span class="ident">description</span></code></dt>
+<dt id="pygrocydm.entities.battery.Battery.description"><code class="name">var <span class="ident">description</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -132,7 +132,7 @@ def description(self) -&gt; str:
     return self.__description</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.battery.Battery.name"><code class="name">var <span class="ident">name</span></code></dt>
+<dt id="pygrocydm.entities.battery.Battery.name"><code class="name">var <span class="ident">name</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -144,7 +144,7 @@ def name(self) -&gt; str:
     return self.__name</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.battery.Battery.used_in"><code class="name">var <span class="ident">used_in</span></code></dt>
+<dt id="pygrocydm.entities.battery.Battery.used_in"><code class="name">var <span class="ident">used_in</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -169,18 +169,18 @@ def used_in(self) -&gt; str:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pygrocydm" href="index.html">pygrocydm</a></code></li>
+<li><code><a title="pygrocydm.entities" href="index.html">pygrocydm.entities</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.battery.Battery" href="#pygrocydm.battery.Battery">Battery</a></code></h4>
+<h4><code><a title="pygrocydm.entities.battery.Battery" href="#pygrocydm.entities.battery.Battery">Battery</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.battery.Battery.charge_interval_days" href="#pygrocydm.battery.Battery.charge_interval_days">charge_interval_days</a></code></li>
-<li><code><a title="pygrocydm.battery.Battery.description" href="#pygrocydm.battery.Battery.description">description</a></code></li>
-<li><code><a title="pygrocydm.battery.Battery.name" href="#pygrocydm.battery.Battery.name">name</a></code></li>
-<li><code><a title="pygrocydm.battery.Battery.used_in" href="#pygrocydm.battery.Battery.used_in">used_in</a></code></li>
+<li><code><a title="pygrocydm.entities.battery.Battery.charge_interval_days" href="#pygrocydm.entities.battery.Battery.charge_interval_days">charge_interval_days</a></code></li>
+<li><code><a title="pygrocydm.entities.battery.Battery.description" href="#pygrocydm.entities.battery.Battery.description">description</a></code></li>
+<li><code><a title="pygrocydm.entities.battery.Battery.name" href="#pygrocydm.entities.battery.Battery.name">name</a></code></li>
+<li><code><a title="pygrocydm.entities.battery.Battery.used_in" href="#pygrocydm.entities.battery.Battery.used_in">used_in</a></code></li>
 </ul>
 </li>
 </ul>

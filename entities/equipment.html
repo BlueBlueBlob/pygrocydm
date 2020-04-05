@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.userobject API documentation</title>
+<title>pygrocydm.entities.equipment API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,27 +17,37 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.userobject</code></h1>
+<h1 class="title">Module <code>pygrocydm.entities.equipment</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_int
+<pre><code class="python">from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
 
-USEROBJECTS_ENDPOINT = &#39;objects/userobjects&#39;
+EQUIPMENT_ENDPOINT = &#39;objects/equipment&#39;
 
 
-class UserObject(GrocyEntity):
+class Equipment(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
-        self.__userentity_id = parse_int(parsed_json.get(&#39;userentity_id&#39;))
+        self.__name = parsed_json.get(&#39;name&#39;)
+        self.__description = parsed_json.get(&#39;description&#39;, None)
+        self.__instruction_manual_file_name = parsed_json.get(
+            &#39;instruction_manual_file_name&#39;, None)
         super().__init__(api, endpoint, parsed_json)
 
     @property
-    def userentity_id(self) -&gt; int:
-        return self.__userentity_id</code></pre>
+    def name(self) -&gt; str:
+        return self.__name
+
+    @property
+    def description(self) -&gt; str:
+        return self.__description
+
+    @property
+    def instruction_manual_file_name(self) -&gt; str:
+        return self.__instruction_manual_file_name</code></pre>
 </details>
 </section>
 <section>
@@ -49,8 +59,8 @@ class UserObject(GrocyEntity):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.userobject.UserObject"><code class="flex name class">
-<span>class <span class="ident">UserObject</span></span>
+<dt id="pygrocydm.entities.equipment.Equipment"><code class="flex name class">
+<span>class <span class="ident">Equipment</span></span>
 <span>(</span><span>api, endpoint, parsed_json)</span>
 </code></dt>
 <dd>
@@ -59,22 +69,33 @@ class UserObject(GrocyEntity):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class UserObject(GrocyEntity):
+<pre><code class="python">class Equipment(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
-        self.__userentity_id = parse_int(parsed_json.get(&#39;userentity_id&#39;))
+        self.__name = parsed_json.get(&#39;name&#39;)
+        self.__description = parsed_json.get(&#39;description&#39;, None)
+        self.__instruction_manual_file_name = parsed_json.get(
+            &#39;instruction_manual_file_name&#39;, None)
         super().__init__(api, endpoint, parsed_json)
 
     @property
-    def userentity_id(self) -&gt; int:
-        return self.__userentity_id</code></pre>
+    def name(self) -&gt; str:
+        return self.__name
+
+    @property
+    def description(self) -&gt; str:
+        return self.__description
+
+    @property
+    def instruction_manual_file_name(self) -&gt; str:
+        return self.__instruction_manual_file_name</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
+<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="../grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pygrocydm.userobject.UserObject.userentity_id"><code class="name">var <span class="ident">userentity_id</span></code></dt>
+<dt id="pygrocydm.entities.equipment.Equipment.description"><code class="name">var <span class="ident">description</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -82,8 +103,32 @@ class UserObject(GrocyEntity):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def userentity_id(self) -&gt; int:
-    return self.__userentity_id</code></pre>
+def description(self) -&gt; str:
+    return self.__description</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.entities.equipment.Equipment.instruction_manual_file_name"><code class="name">var <span class="ident">instruction_manual_file_name</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def instruction_manual_file_name(self) -&gt; str:
+    return self.__instruction_manual_file_name</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.entities.equipment.Equipment.name"><code class="name">var <span class="ident">name</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def name(self) -&gt; str:
+    return self.__name</code></pre>
 </details>
 </dd>
 </dl>
@@ -99,15 +144,17 @@ def userentity_id(self) -&gt; int:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pygrocydm" href="index.html">pygrocydm</a></code></li>
+<li><code><a title="pygrocydm.entities" href="index.html">pygrocydm.entities</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.userobject.UserObject" href="#pygrocydm.userobject.UserObject">UserObject</a></code></h4>
+<h4><code><a title="pygrocydm.entities.equipment.Equipment" href="#pygrocydm.entities.equipment.Equipment">Equipment</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.userobject.UserObject.userentity_id" href="#pygrocydm.userobject.UserObject.userentity_id">userentity_id</a></code></li>
+<li><code><a title="pygrocydm.entities.equipment.Equipment.description" href="#pygrocydm.entities.equipment.Equipment.description">description</a></code></li>
+<li><code><a title="pygrocydm.entities.equipment.Equipment.instruction_manual_file_name" href="#pygrocydm.entities.equipment.Equipment.instruction_manual_file_name">instruction_manual_file_name</a></code></li>
+<li><code><a title="pygrocydm.entities.equipment.Equipment.name" href="#pygrocydm.entities.equipment.Equipment.name">name</a></code></li>
 </ul>
 </li>
 </ul>

@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.recipe API documentation</title>
+<title>pygrocydm.entities.recipe API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,7 +17,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.recipe</code></h1>
+<h1 class="title">Module <code>pygrocydm.entities.recipe</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -26,8 +26,8 @@
 </summary>
 <pre><code class="python">from enum import Enum
 
-from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_bool, parse_int
+from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.utils import parse_bool, parse_int
 
 RECIPES_ENDPOINT = &#39;objects/recipes&#39;
 
@@ -94,7 +94,7 @@ class Recipe(GrocyEntity):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.recipe.Recipe"><code class="flex name class">
+<dt id="pygrocydm.entities.recipe.Recipe"><code class="flex name class">
 <span>class <span class="ident">Recipe</span></span>
 <span>(</span><span>api, endpoint, parsed_json)</span>
 </code></dt>
@@ -152,11 +152,11 @@ class Recipe(GrocyEntity):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
+<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="../grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pygrocydm.recipe.Recipe.base_servings"><code class="name">var <span class="ident">base_servings</span></code></dt>
+<dt id="pygrocydm.entities.recipe.Recipe.base_servings"><code class="name">var <span class="ident">base_servings</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -168,7 +168,7 @@ def base_servings(self) -&gt; int:
     return self.__base_servings</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.recipe.Recipe.description"><code class="name">var <span class="ident">description</span></code></dt>
+<dt id="pygrocydm.entities.recipe.Recipe.description"><code class="name">var <span class="ident">description</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -180,7 +180,7 @@ def description(self) -&gt; str:
     return self.__description</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.recipe.Recipe.desired_servings"><code class="name">var <span class="ident">desired_servings</span></code></dt>
+<dt id="pygrocydm.entities.recipe.Recipe.desired_servings"><code class="name">var <span class="ident">desired_servings</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -192,7 +192,7 @@ def desired_servings(self) -&gt; int:
     return self.__desired_servings</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.recipe.Recipe.name"><code class="name">var <span class="ident">name</span></code></dt>
+<dt id="pygrocydm.entities.recipe.Recipe.name"><code class="name">var <span class="ident">name</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -204,7 +204,7 @@ def name(self) -&gt; str:
     return self.__name</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.recipe.Recipe.not_check_shoppinglist"><code class="name">var <span class="ident">not_check_shoppinglist</span></code></dt>
+<dt id="pygrocydm.entities.recipe.Recipe.not_check_shoppinglist"><code class="name">var <span class="ident">not_check_shoppinglist</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -216,7 +216,7 @@ def not_check_shoppinglist(self) -&gt; bool:
     return self.__not_check_shoppinglist</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.recipe.Recipe.picture_file_name"><code class="name">var <span class="ident">picture_file_name</span></code></dt>
+<dt id="pygrocydm.entities.recipe.Recipe.picture_file_name"><code class="name">var <span class="ident">picture_file_name</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -228,7 +228,7 @@ def picture_file_name(self) -&gt; str:
     return self.__picture_file_name</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.recipe.Recipe.product_id"><code class="name">var <span class="ident">product_id</span></code></dt>
+<dt id="pygrocydm.entities.recipe.Recipe.product_id"><code class="name">var <span class="ident">product_id</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -240,7 +240,7 @@ def product_id(self) -&gt; int:
     return self.__product_id</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.recipe.Recipe.type"><code class="name">var <span class="ident">type</span></code></dt>
+<dt id="pygrocydm.entities.recipe.Recipe.type"><code class="name">var <span class="ident">type</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -254,7 +254,7 @@ def type(self) -&gt; str:
 </dd>
 </dl>
 </dd>
-<dt id="pygrocydm.recipe.RecipeType"><code class="flex name class">
+<dt id="pygrocydm.entities.recipe.RecipeType"><code class="flex name class">
 <span>class <span class="ident">RecipeType</span></span>
 <span>(</span><span>value, names=None, *, module=None, qualname=None, type=None, start=1)</span>
 </code></dt>
@@ -275,15 +275,15 @@ def type(self) -&gt; str:
 </ul>
 <h3>Class variables</h3>
 <dl>
-<dt id="pygrocydm.recipe.RecipeType.MEALPLAN_DAY"><code class="name">var <span class="ident">MEALPLAN_DAY</span></code></dt>
+<dt id="pygrocydm.entities.recipe.RecipeType.MEALPLAN_DAY"><code class="name">var <span class="ident">MEALPLAN_DAY</span></code></dt>
 <dd>
 <section class="desc"></section>
 </dd>
-<dt id="pygrocydm.recipe.RecipeType.MEALPLAN_WEEK"><code class="name">var <span class="ident">MEALPLAN_WEEK</span></code></dt>
+<dt id="pygrocydm.entities.recipe.RecipeType.MEALPLAN_WEEK"><code class="name">var <span class="ident">MEALPLAN_WEEK</span></code></dt>
 <dd>
 <section class="desc"></section>
 </dd>
-<dt id="pygrocydm.recipe.RecipeType.NORMAL"><code class="name">var <span class="ident">NORMAL</span></code></dt>
+<dt id="pygrocydm.entities.recipe.RecipeType.NORMAL"><code class="name">var <span class="ident">NORMAL</span></code></dt>
 <dd>
 <section class="desc"></section>
 </dd>
@@ -300,30 +300,30 @@ def type(self) -&gt; str:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pygrocydm" href="index.html">pygrocydm</a></code></li>
+<li><code><a title="pygrocydm.entities" href="index.html">pygrocydm.entities</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.recipe.Recipe" href="#pygrocydm.recipe.Recipe">Recipe</a></code></h4>
+<h4><code><a title="pygrocydm.entities.recipe.Recipe" href="#pygrocydm.entities.recipe.Recipe">Recipe</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.recipe.Recipe.base_servings" href="#pygrocydm.recipe.Recipe.base_servings">base_servings</a></code></li>
-<li><code><a title="pygrocydm.recipe.Recipe.description" href="#pygrocydm.recipe.Recipe.description">description</a></code></li>
-<li><code><a title="pygrocydm.recipe.Recipe.desired_servings" href="#pygrocydm.recipe.Recipe.desired_servings">desired_servings</a></code></li>
-<li><code><a title="pygrocydm.recipe.Recipe.name" href="#pygrocydm.recipe.Recipe.name">name</a></code></li>
-<li><code><a title="pygrocydm.recipe.Recipe.not_check_shoppinglist" href="#pygrocydm.recipe.Recipe.not_check_shoppinglist">not_check_shoppinglist</a></code></li>
-<li><code><a title="pygrocydm.recipe.Recipe.picture_file_name" href="#pygrocydm.recipe.Recipe.picture_file_name">picture_file_name</a></code></li>
-<li><code><a title="pygrocydm.recipe.Recipe.product_id" href="#pygrocydm.recipe.Recipe.product_id">product_id</a></code></li>
-<li><code><a title="pygrocydm.recipe.Recipe.type" href="#pygrocydm.recipe.Recipe.type">type</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.Recipe.base_servings" href="#pygrocydm.entities.recipe.Recipe.base_servings">base_servings</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.Recipe.description" href="#pygrocydm.entities.recipe.Recipe.description">description</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.Recipe.desired_servings" href="#pygrocydm.entities.recipe.Recipe.desired_servings">desired_servings</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.Recipe.name" href="#pygrocydm.entities.recipe.Recipe.name">name</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.Recipe.not_check_shoppinglist" href="#pygrocydm.entities.recipe.Recipe.not_check_shoppinglist">not_check_shoppinglist</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.Recipe.picture_file_name" href="#pygrocydm.entities.recipe.Recipe.picture_file_name">picture_file_name</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.Recipe.product_id" href="#pygrocydm.entities.recipe.Recipe.product_id">product_id</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.Recipe.type" href="#pygrocydm.entities.recipe.Recipe.type">type</a></code></li>
 </ul>
 </li>
 <li>
-<h4><code><a title="pygrocydm.recipe.RecipeType" href="#pygrocydm.recipe.RecipeType">RecipeType</a></code></h4>
+<h4><code><a title="pygrocydm.entities.recipe.RecipeType" href="#pygrocydm.entities.recipe.RecipeType">RecipeType</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.recipe.RecipeType.MEALPLAN_DAY" href="#pygrocydm.recipe.RecipeType.MEALPLAN_DAY">MEALPLAN_DAY</a></code></li>
-<li><code><a title="pygrocydm.recipe.RecipeType.MEALPLAN_WEEK" href="#pygrocydm.recipe.RecipeType.MEALPLAN_WEEK">MEALPLAN_WEEK</a></code></li>
-<li><code><a title="pygrocydm.recipe.RecipeType.NORMAL" href="#pygrocydm.recipe.RecipeType.NORMAL">NORMAL</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.RecipeType.MEALPLAN_DAY" href="#pygrocydm.entities.recipe.RecipeType.MEALPLAN_DAY">MEALPLAN_DAY</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.RecipeType.MEALPLAN_WEEK" href="#pygrocydm.entities.recipe.RecipeType.MEALPLAN_WEEK">MEALPLAN_WEEK</a></code></li>
+<li><code><a title="pygrocydm.entities.recipe.RecipeType.NORMAL" href="#pygrocydm.entities.recipe.RecipeType.NORMAL">NORMAL</a></code></li>
 </ul>
 </li>
 </ul>

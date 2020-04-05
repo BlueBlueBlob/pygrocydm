@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.product API documentation</title>
+<title>pygrocydm.entities.product API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,7 +17,7 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.product</code></h1>
+<h1 class="title">Module <code>pygrocydm.entities.product</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
@@ -26,8 +26,8 @@
 </summary>
 <pre><code class="python">from typing import List
 
-from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_bool, parse_float, parse_int
+from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.utils import parse_bool, parse_float, parse_int
 
 PRODUCTS_ENDPOINT = &#39;objects/products&#39;
 
@@ -140,7 +140,7 @@ class Product(GrocyEntity):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.product.Product"><code class="flex name class">
+<dt id="pygrocydm.entities.product.Product"><code class="flex name class">
 <span>class <span class="ident">Product</span></span>
 <span>(</span><span>api, endpoint, parsed_json)</span>
 </code></dt>
@@ -250,11 +250,11 @@ class Product(GrocyEntity):
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
+<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="../grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pygrocydm.product.Product.allow_partial_units_in_stock"><code class="name">var <span class="ident">allow_partial_units_in_stock</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.allow_partial_units_in_stock"><code class="name">var <span class="ident">allow_partial_units_in_stock</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -266,7 +266,7 @@ def allow_partial_units_in_stock(self) -&gt; bool:
     return self.__allow_partial_units_in_stock</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.barcodes"><code class="name">var <span class="ident">barcodes</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.barcodes"><code class="name">var <span class="ident">barcodes</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -278,7 +278,7 @@ def barcodes(self) -&gt; List[str]:
     return self.__barcodes</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.default_best_before_days"><code class="name">var <span class="ident">default_best_before_days</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.default_best_before_days"><code class="name">var <span class="ident">default_best_before_days</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -290,7 +290,7 @@ def default_best_before_days(self) -&gt; int:
     return self.__default_best_before_days</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.default_best_before_days_after_open"><code class="name">var <span class="ident">default_best_before_days_after_open</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.default_best_before_days_after_open"><code class="name">var <span class="ident">default_best_before_days_after_open</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -302,7 +302,7 @@ def default_best_before_days_after_open(self) -&gt; int:
     return self.__default_best_before_days_after_open</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.description"><code class="name">var <span class="ident">description</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.description"><code class="name">var <span class="ident">description</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -314,7 +314,7 @@ def description(self) -&gt; str:
     return self.__description</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.enable_tare_weight_handling"><code class="name">var <span class="ident">enable_tare_weight_handling</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.enable_tare_weight_handling"><code class="name">var <span class="ident">enable_tare_weight_handling</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -326,7 +326,7 @@ def enable_tare_weight_handling(self) -&gt; int:
     return self.__enable_tare_weight_handling</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.location_id"><code class="name">var <span class="ident">location_id</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.location_id"><code class="name">var <span class="ident">location_id</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -338,7 +338,7 @@ def location_id(self) -&gt; int:
     return self.__location_id</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.min_stock_amount"><code class="name">var <span class="ident">min_stock_amount</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.min_stock_amount"><code class="name">var <span class="ident">min_stock_amount</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -350,7 +350,7 @@ def min_stock_amount(self) -&gt; int:
     return self.__min_stock_amount</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.name"><code class="name">var <span class="ident">name</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.name"><code class="name">var <span class="ident">name</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -362,7 +362,7 @@ def name(self) -&gt; str:
     return self.__name</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.not_check_stock_fulfillment_for_recipes"><code class="name">var <span class="ident">not_check_stock_fulfillment_for_recipes</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.not_check_stock_fulfillment_for_recipes"><code class="name">var <span class="ident">not_check_stock_fulfillment_for_recipes</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -374,7 +374,7 @@ def not_check_stock_fulfillment_for_recipes(self) -&gt; int:
     return self.__not_check_stock_fulfillment_for_recipes</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.picture_file_name"><code class="name">var <span class="ident">picture_file_name</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.picture_file_name"><code class="name">var <span class="ident">picture_file_name</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -386,7 +386,7 @@ def picture_file_name(self) -&gt; str:
     return self.__picture_file_name</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.product_group_id"><code class="name">var <span class="ident">product_group_id</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.product_group_id"><code class="name">var <span class="ident">product_group_id</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -398,7 +398,7 @@ def product_group_id(self) -&gt; int:
     return self.__product_group_id</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.qu_factor_purchase_to_stock"><code class="name">var <span class="ident">qu_factor_purchase_to_stock</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.qu_factor_purchase_to_stock"><code class="name">var <span class="ident">qu_factor_purchase_to_stock</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -410,7 +410,7 @@ def qu_factor_purchase_to_stock(self) -&gt; float:
     return self.__qu_factor_purchase_to_stock</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.qu_id_purchase"><code class="name">var <span class="ident">qu_id_purchase</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.qu_id_purchase"><code class="name">var <span class="ident">qu_id_purchase</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -422,7 +422,7 @@ def qu_id_purchase(self) -&gt; int:
     return self.__qu_id_purchase</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.qu_id_stock"><code class="name">var <span class="ident">qu_id_stock</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.qu_id_stock"><code class="name">var <span class="ident">qu_id_stock</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -434,7 +434,7 @@ def qu_id_stock(self) -&gt; int:
     return self.__qu_id_stock</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.product.Product.tare_weight"><code class="name">var <span class="ident">tare_weight</span></code></dt>
+<dt id="pygrocydm.entities.product.Product.tare_weight"><code class="name">var <span class="ident">tare_weight</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -459,30 +459,30 @@ def tare_weight(self) -&gt; float:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pygrocydm" href="index.html">pygrocydm</a></code></li>
+<li><code><a title="pygrocydm.entities" href="index.html">pygrocydm.entities</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.product.Product" href="#pygrocydm.product.Product">Product</a></code></h4>
+<h4><code><a title="pygrocydm.entities.product.Product" href="#pygrocydm.entities.product.Product">Product</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.product.Product.allow_partial_units_in_stock" href="#pygrocydm.product.Product.allow_partial_units_in_stock">allow_partial_units_in_stock</a></code></li>
-<li><code><a title="pygrocydm.product.Product.barcodes" href="#pygrocydm.product.Product.barcodes">barcodes</a></code></li>
-<li><code><a title="pygrocydm.product.Product.default_best_before_days" href="#pygrocydm.product.Product.default_best_before_days">default_best_before_days</a></code></li>
-<li><code><a title="pygrocydm.product.Product.default_best_before_days_after_open" href="#pygrocydm.product.Product.default_best_before_days_after_open">default_best_before_days_after_open</a></code></li>
-<li><code><a title="pygrocydm.product.Product.description" href="#pygrocydm.product.Product.description">description</a></code></li>
-<li><code><a title="pygrocydm.product.Product.enable_tare_weight_handling" href="#pygrocydm.product.Product.enable_tare_weight_handling">enable_tare_weight_handling</a></code></li>
-<li><code><a title="pygrocydm.product.Product.location_id" href="#pygrocydm.product.Product.location_id">location_id</a></code></li>
-<li><code><a title="pygrocydm.product.Product.min_stock_amount" href="#pygrocydm.product.Product.min_stock_amount">min_stock_amount</a></code></li>
-<li><code><a title="pygrocydm.product.Product.name" href="#pygrocydm.product.Product.name">name</a></code></li>
-<li><code><a title="pygrocydm.product.Product.not_check_stock_fulfillment_for_recipes" href="#pygrocydm.product.Product.not_check_stock_fulfillment_for_recipes">not_check_stock_fulfillment_for_recipes</a></code></li>
-<li><code><a title="pygrocydm.product.Product.picture_file_name" href="#pygrocydm.product.Product.picture_file_name">picture_file_name</a></code></li>
-<li><code><a title="pygrocydm.product.Product.product_group_id" href="#pygrocydm.product.Product.product_group_id">product_group_id</a></code></li>
-<li><code><a title="pygrocydm.product.Product.qu_factor_purchase_to_stock" href="#pygrocydm.product.Product.qu_factor_purchase_to_stock">qu_factor_purchase_to_stock</a></code></li>
-<li><code><a title="pygrocydm.product.Product.qu_id_purchase" href="#pygrocydm.product.Product.qu_id_purchase">qu_id_purchase</a></code></li>
-<li><code><a title="pygrocydm.product.Product.qu_id_stock" href="#pygrocydm.product.Product.qu_id_stock">qu_id_stock</a></code></li>
-<li><code><a title="pygrocydm.product.Product.tare_weight" href="#pygrocydm.product.Product.tare_weight">tare_weight</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.allow_partial_units_in_stock" href="#pygrocydm.entities.product.Product.allow_partial_units_in_stock">allow_partial_units_in_stock</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.barcodes" href="#pygrocydm.entities.product.Product.barcodes">barcodes</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.default_best_before_days" href="#pygrocydm.entities.product.Product.default_best_before_days">default_best_before_days</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.default_best_before_days_after_open" href="#pygrocydm.entities.product.Product.default_best_before_days_after_open">default_best_before_days_after_open</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.description" href="#pygrocydm.entities.product.Product.description">description</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.enable_tare_weight_handling" href="#pygrocydm.entities.product.Product.enable_tare_weight_handling">enable_tare_weight_handling</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.location_id" href="#pygrocydm.entities.product.Product.location_id">location_id</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.min_stock_amount" href="#pygrocydm.entities.product.Product.min_stock_amount">min_stock_amount</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.name" href="#pygrocydm.entities.product.Product.name">name</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.not_check_stock_fulfillment_for_recipes" href="#pygrocydm.entities.product.Product.not_check_stock_fulfillment_for_recipes">not_check_stock_fulfillment_for_recipes</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.picture_file_name" href="#pygrocydm.entities.product.Product.picture_file_name">picture_file_name</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.product_group_id" href="#pygrocydm.entities.product.Product.product_group_id">product_group_id</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.qu_factor_purchase_to_stock" href="#pygrocydm.entities.product.Product.qu_factor_purchase_to_stock">qu_factor_purchase_to_stock</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.qu_id_purchase" href="#pygrocydm.entities.product.Product.qu_id_purchase">qu_id_purchase</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.qu_id_stock" href="#pygrocydm.entities.product.Product.qu_id_stock">qu_id_stock</a></code></li>
+<li><code><a title="pygrocydm.entities.product.Product.tare_weight" href="#pygrocydm.entities.product.Product.tare_weight">tare_weight</a></code></li>
 </ul>
 </li>
 </ul>

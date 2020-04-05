@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.location API documentation</title>
+<title>pygrocydm.entities.quantity_unit API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,24 +17,24 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.location</code></h1>
+<h1 class="title">Module <code>pygrocydm.entities.quantity_unit</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_bool
+<pre><code class="python">from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
 
-LOCATION_ENDPOINT = &#39;objects/locations&#39;
+QUANTITY_UNITS_ENDPOINT = &#39;objects/quantity_units&#39;
 
 
-class Location(GrocyEntity):
+class QuantityUnit(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
         self.__name = parsed_json.get(&#39;name&#39;)
+        self.__name_plural = parsed_json.get(&#39;name_plural&#39;)
         self.__description = parsed_json.get(&#39;description&#39;, None)
-        self.__is_freezer = parse_bool(parsed_json.get(&#39;is_freezer&#39;), False)
+        self.__plural_forms = parsed_json.get(&#39;plural_forms&#39;, None)
         super().__init__(api, endpoint, parsed_json)
 
     @property
@@ -42,12 +42,16 @@ class Location(GrocyEntity):
         return self.__name
 
     @property
-    def description(self) -&gt; str:
-        return self.__description
+    def name_plural(self) -&gt; str:
+        return self.__name_plural
 
     @property
-    def is_freezer(self) -&gt; bool:
-        return self.__is_freezer</code></pre>
+    def plural_forms(self) -&gt; str:
+        return self.__plural_forms
+
+    @property
+    def description(self) -&gt; str:
+        return self.__description</code></pre>
 </details>
 </section>
 <section>
@@ -59,8 +63,8 @@ class Location(GrocyEntity):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.location.Location"><code class="flex name class">
-<span>class <span class="ident">Location</span></span>
+<dt id="pygrocydm.entities.quantity_unit.QuantityUnit"><code class="flex name class">
+<span>class <span class="ident">QuantityUnit</span></span>
 <span>(</span><span>api, endpoint, parsed_json)</span>
 </code></dt>
 <dd>
@@ -69,11 +73,12 @@ class Location(GrocyEntity):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class Location(GrocyEntity):
+<pre><code class="python">class QuantityUnit(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
         self.__name = parsed_json.get(&#39;name&#39;)
+        self.__name_plural = parsed_json.get(&#39;name_plural&#39;)
         self.__description = parsed_json.get(&#39;description&#39;, None)
-        self.__is_freezer = parse_bool(parsed_json.get(&#39;is_freezer&#39;), False)
+        self.__plural_forms = parsed_json.get(&#39;plural_forms&#39;, None)
         super().__init__(api, endpoint, parsed_json)
 
     @property
@@ -81,20 +86,24 @@ class Location(GrocyEntity):
         return self.__name
 
     @property
-    def description(self) -&gt; str:
-        return self.__description
+    def name_plural(self) -&gt; str:
+        return self.__name_plural
 
     @property
-    def is_freezer(self) -&gt; bool:
-        return self.__is_freezer</code></pre>
+    def plural_forms(self) -&gt; str:
+        return self.__plural_forms
+
+    @property
+    def description(self) -&gt; str:
+        return self.__description</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
+<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="../grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pygrocydm.location.Location.description"><code class="name">var <span class="ident">description</span></code></dt>
+<dt id="pygrocydm.entities.quantity_unit.QuantityUnit.description"><code class="name">var <span class="ident">description</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -106,19 +115,7 @@ def description(self) -&gt; str:
     return self.__description</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.location.Location.is_freezer"><code class="name">var <span class="ident">is_freezer</span></code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def is_freezer(self) -&gt; bool:
-    return self.__is_freezer</code></pre>
-</details>
-</dd>
-<dt id="pygrocydm.location.Location.name"><code class="name">var <span class="ident">name</span></code></dt>
+<dt id="pygrocydm.entities.quantity_unit.QuantityUnit.name"><code class="name">var <span class="ident">name</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -128,6 +125,30 @@ def is_freezer(self) -&gt; bool:
 <pre><code class="python">@property
 def name(self) -&gt; str:
     return self.__name</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.entities.quantity_unit.QuantityUnit.name_plural"><code class="name">var <span class="ident">name_plural</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def name_plural(self) -&gt; str:
+    return self.__name_plural</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.entities.quantity_unit.QuantityUnit.plural_forms"><code class="name">var <span class="ident">plural_forms</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def plural_forms(self) -&gt; str:
+    return self.__plural_forms</code></pre>
 </details>
 </dd>
 </dl>
@@ -143,17 +164,18 @@ def name(self) -&gt; str:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pygrocydm" href="index.html">pygrocydm</a></code></li>
+<li><code><a title="pygrocydm.entities" href="index.html">pygrocydm.entities</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.location.Location" href="#pygrocydm.location.Location">Location</a></code></h4>
+<h4><code><a title="pygrocydm.entities.quantity_unit.QuantityUnit" href="#pygrocydm.entities.quantity_unit.QuantityUnit">QuantityUnit</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.location.Location.description" href="#pygrocydm.location.Location.description">description</a></code></li>
-<li><code><a title="pygrocydm.location.Location.is_freezer" href="#pygrocydm.location.Location.is_freezer">is_freezer</a></code></li>
-<li><code><a title="pygrocydm.location.Location.name" href="#pygrocydm.location.Location.name">name</a></code></li>
+<li><code><a title="pygrocydm.entities.quantity_unit.QuantityUnit.description" href="#pygrocydm.entities.quantity_unit.QuantityUnit.description">description</a></code></li>
+<li><code><a title="pygrocydm.entities.quantity_unit.QuantityUnit.name" href="#pygrocydm.entities.quantity_unit.QuantityUnit.name">name</a></code></li>
+<li><code><a title="pygrocydm.entities.quantity_unit.QuantityUnit.name_plural" href="#pygrocydm.entities.quantity_unit.QuantityUnit.name_plural">name_plural</a></code></li>
+<li><code><a title="pygrocydm.entities.quantity_unit.QuantityUnit.plural_forms" href="#pygrocydm.entities.quantity_unit.QuantityUnit.plural_forms">plural_forms</a></code></li>
 </ul>
 </li>
 </ul>

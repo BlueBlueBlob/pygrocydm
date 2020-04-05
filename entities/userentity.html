@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.task API documentation</title>
+<title>pygrocydm.entities.userentity API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,32 +17,27 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.task</code></h1>
+<h1 class="title">Module <code>pygrocydm.entities.userentity</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from datetime import datetime
+<pre><code class="python">from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.utils import parse_bool
 
-from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_bool, parse_date, parse_int
-
-TASKS_ENDPOINT = &#39;objects/tasks&#39;
+USERENTITIES_ENDPOINT = &#39;objects/userentities&#39;
 
 
-class Task(GrocyEntity):
+class UserEntity(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
         self.__name = parsed_json.get(&#39;name&#39;)
+        self.__caption = parsed_json.get(&#39;caption&#39;)
         self.__description = parsed_json.get(&#39;description&#39;, None)
-        self.__due_date = parse_date(parsed_json.get(&#39;due_date&#39;, None))
-        self.__done = parse_bool(parsed_json.get(&#39;done&#39;), False)
-        self.__done_timestamp = parse_date(
-            parsed_json.get(&#39;done_timestamp&#39;, None))
-        self.__category_id = parse_int(parsed_json.get(&#39;category_id&#39;), None)
-        self.__assigned_to_user_id = parse_int(
-            parsed_json.get(&#39;assigned_to_user_id&#39;))
+        self.__show_in_sidebar_menu = parse_bool(
+            parsed_json.get(&#39;show_in_sidebar_menu&#39;), False)
+        self.__icon_css_class = parsed_json.get(&#39;icon_css_class&#39;, None)
         super().__init__(api, endpoint, parsed_json)
 
     @property
@@ -50,28 +45,20 @@ class Task(GrocyEntity):
         return self.__name
 
     @property
+    def caption(self) -&gt; str:
+        return self.__caption
+
+    @property
     def description(self) -&gt; str:
         return self.__description
 
     @property
-    def due_date(self) -&gt; datetime:
-        return self.__due_date
+    def show_in_sidebar_menu(self) -&gt; bool:
+        return self.__show_in_sidebar_menu
 
     @property
-    def done(self) -&gt; bool:
-        return self.__done
-
-    @property
-    def done_timestamp(self) -&gt; datetime:
-        return self.__done_timestamp
-
-    @property
-    def category_id(self) -&gt; int:
-        return self.__category_id
-
-    @property
-    def assigned_to_user_id(self) -&gt; int:
-        return self.__assigned_to_user_id</code></pre>
+    def icon_css_class(self) -&gt; str:
+        return self.__icon_css_class</code></pre>
 </details>
 </section>
 <section>
@@ -83,8 +70,8 @@ class Task(GrocyEntity):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.task.Task"><code class="flex name class">
-<span>class <span class="ident">Task</span></span>
+<dt id="pygrocydm.entities.userentity.UserEntity"><code class="flex name class">
+<span>class <span class="ident">UserEntity</span></span>
 <span>(</span><span>api, endpoint, parsed_json)</span>
 </code></dt>
 <dd>
@@ -93,17 +80,14 @@ class Task(GrocyEntity):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class Task(GrocyEntity):
+<pre><code class="python">class UserEntity(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
         self.__name = parsed_json.get(&#39;name&#39;)
+        self.__caption = parsed_json.get(&#39;caption&#39;)
         self.__description = parsed_json.get(&#39;description&#39;, None)
-        self.__due_date = parse_date(parsed_json.get(&#39;due_date&#39;, None))
-        self.__done = parse_bool(parsed_json.get(&#39;done&#39;), False)
-        self.__done_timestamp = parse_date(
-            parsed_json.get(&#39;done_timestamp&#39;, None))
-        self.__category_id = parse_int(parsed_json.get(&#39;category_id&#39;), None)
-        self.__assigned_to_user_id = parse_int(
-            parsed_json.get(&#39;assigned_to_user_id&#39;))
+        self.__show_in_sidebar_menu = parse_bool(
+            parsed_json.get(&#39;show_in_sidebar_menu&#39;), False)
+        self.__icon_css_class = parsed_json.get(&#39;icon_css_class&#39;, None)
         super().__init__(api, endpoint, parsed_json)
 
     @property
@@ -111,36 +95,28 @@ class Task(GrocyEntity):
         return self.__name
 
     @property
+    def caption(self) -&gt; str:
+        return self.__caption
+
+    @property
     def description(self) -&gt; str:
         return self.__description
 
     @property
-    def due_date(self) -&gt; datetime:
-        return self.__due_date
+    def show_in_sidebar_menu(self) -&gt; bool:
+        return self.__show_in_sidebar_menu
 
     @property
-    def done(self) -&gt; bool:
-        return self.__done
-
-    @property
-    def done_timestamp(self) -&gt; datetime:
-        return self.__done_timestamp
-
-    @property
-    def category_id(self) -&gt; int:
-        return self.__category_id
-
-    @property
-    def assigned_to_user_id(self) -&gt; int:
-        return self.__assigned_to_user_id</code></pre>
+    def icon_css_class(self) -&gt; str:
+        return self.__icon_css_class</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
+<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="../grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pygrocydm.task.Task.assigned_to_user_id"><code class="name">var <span class="ident">assigned_to_user_id</span></code></dt>
+<dt id="pygrocydm.entities.userentity.UserEntity.caption"><code class="name">var <span class="ident">caption</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -148,23 +124,11 @@ class Task(GrocyEntity):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def assigned_to_user_id(self) -&gt; int:
-    return self.__assigned_to_user_id</code></pre>
+def caption(self) -&gt; str:
+    return self.__caption</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.task.Task.category_id"><code class="name">var <span class="ident">category_id</span></code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def category_id(self) -&gt; int:
-    return self.__category_id</code></pre>
-</details>
-</dd>
-<dt id="pygrocydm.task.Task.description"><code class="name">var <span class="ident">description</span></code></dt>
+<dt id="pygrocydm.entities.userentity.UserEntity.description"><code class="name">var <span class="ident">description</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -176,7 +140,7 @@ def description(self) -&gt; str:
     return self.__description</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.task.Task.done"><code class="name">var <span class="ident">done</span></code></dt>
+<dt id="pygrocydm.entities.userentity.UserEntity.icon_css_class"><code class="name">var <span class="ident">icon_css_class</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -184,35 +148,11 @@ def description(self) -&gt; str:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def done(self) -&gt; bool:
-    return self.__done</code></pre>
+def icon_css_class(self) -&gt; str:
+    return self.__icon_css_class</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.task.Task.done_timestamp"><code class="name">var <span class="ident">done_timestamp</span></code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def done_timestamp(self) -&gt; datetime:
-    return self.__done_timestamp</code></pre>
-</details>
-</dd>
-<dt id="pygrocydm.task.Task.due_date"><code class="name">var <span class="ident">due_date</span></code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">@property
-def due_date(self) -&gt; datetime:
-    return self.__due_date</code></pre>
-</details>
-</dd>
-<dt id="pygrocydm.task.Task.name"><code class="name">var <span class="ident">name</span></code></dt>
+<dt id="pygrocydm.entities.userentity.UserEntity.name"><code class="name">var <span class="ident">name</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -222,6 +162,18 @@ def due_date(self) -&gt; datetime:
 <pre><code class="python">@property
 def name(self) -&gt; str:
     return self.__name</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.entities.userentity.UserEntity.show_in_sidebar_menu"><code class="name">var <span class="ident">show_in_sidebar_menu</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def show_in_sidebar_menu(self) -&gt; bool:
+    return self.__show_in_sidebar_menu</code></pre>
 </details>
 </dd>
 </dl>
@@ -237,21 +189,19 @@ def name(self) -&gt; str:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pygrocydm" href="index.html">pygrocydm</a></code></li>
+<li><code><a title="pygrocydm.entities" href="index.html">pygrocydm.entities</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.task.Task" href="#pygrocydm.task.Task">Task</a></code></h4>
-<ul class="two-column">
-<li><code><a title="pygrocydm.task.Task.assigned_to_user_id" href="#pygrocydm.task.Task.assigned_to_user_id">assigned_to_user_id</a></code></li>
-<li><code><a title="pygrocydm.task.Task.category_id" href="#pygrocydm.task.Task.category_id">category_id</a></code></li>
-<li><code><a title="pygrocydm.task.Task.description" href="#pygrocydm.task.Task.description">description</a></code></li>
-<li><code><a title="pygrocydm.task.Task.done" href="#pygrocydm.task.Task.done">done</a></code></li>
-<li><code><a title="pygrocydm.task.Task.done_timestamp" href="#pygrocydm.task.Task.done_timestamp">done_timestamp</a></code></li>
-<li><code><a title="pygrocydm.task.Task.due_date" href="#pygrocydm.task.Task.due_date">due_date</a></code></li>
-<li><code><a title="pygrocydm.task.Task.name" href="#pygrocydm.task.Task.name">name</a></code></li>
+<h4><code><a title="pygrocydm.entities.userentity.UserEntity" href="#pygrocydm.entities.userentity.UserEntity">UserEntity</a></code></h4>
+<ul class="">
+<li><code><a title="pygrocydm.entities.userentity.UserEntity.caption" href="#pygrocydm.entities.userentity.UserEntity.caption">caption</a></code></li>
+<li><code><a title="pygrocydm.entities.userentity.UserEntity.description" href="#pygrocydm.entities.userentity.UserEntity.description">description</a></code></li>
+<li><code><a title="pygrocydm.entities.userentity.UserEntity.icon_css_class" href="#pygrocydm.entities.userentity.UserEntity.icon_css_class">icon_css_class</a></code></li>
+<li><code><a title="pygrocydm.entities.userentity.UserEntity.name" href="#pygrocydm.entities.userentity.UserEntity.name">name</a></code></li>
+<li><code><a title="pygrocydm.entities.userentity.UserEntity.show_in_sidebar_menu" href="#pygrocydm.entities.userentity.UserEntity.show_in_sidebar_menu">show_in_sidebar_menu</a></code></li>
 </ul>
 </li>
 </ul>

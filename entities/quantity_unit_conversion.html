@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.recipe_nesting API documentation</title>
+<title>pygrocydm.entities.quantity_unit_conversion API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,38 +17,42 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.recipe_nesting</code></h1>
+<h1 class="title">Module <code>pygrocydm.entities.quantity_unit_conversion</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from .grocy_api_client import GrocyApiClient, GrocyEntity
-from .utils import parse_int
+<pre><code class="python">from pygrocydm.grocy_api_client import GrocyApiClient, GrocyEntity
+from pygrocydm.utils import parse_float, parse_int
 
-RECIPES_NESTINGS_ENDPOINT = &#39;objects/recipes_nestings&#39;
+QUANTITY_UNIT_CONVERTIONS_ENDPOINT = &#39;objects/quantity_unit_conversions&#39;
 
 
-class RecipeNesting(GrocyEntity):
+class QuantityUnitConversion(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
-        self.__recipe_id = parse_int(parsed_json.get(&#39;recipe_id&#39;))
-        self.__includes_recipe_id = parse_int(
-            parsed_json.get(&#39;includes_recipe_id&#39;))
-        self.__servings = parse_int(parsed_json.get(&#39;servings&#39;))
+        self.__from_qu_id = parse_int(parsed_json.get(&#39;from_qu_id&#39;))
+        self.__to_qu_id = parse_int(parsed_json.get(&#39;to_qu_id&#39;))
+        self.__factor = parse_float(parsed_json.get(&#39;factor&#39;))
+        self.__product_id = parse_int(parsed_json.get(&#39;product_id&#39;))
         super().__init__(api, endpoint, parsed_json)
 
     @property
-    def recipe_id(self) -&gt; int:
-        return self.__recipe_id
+    def from_qu_id(self) -&gt; int:
+        return self.__from_qu_id
 
     @property
-    def includes_recipe_id(self) -&gt; int:
-        return self.__includes_recipe_id
+    def to_qu_id(self) -&gt; int:
+        return self.__to_qu_id
 
     @property
-    def servings(self) -&gt; int:
-        return self.__servings</code></pre>
+    def factor(self) -&gt; float:
+        return self.__factor
+
+    @property
+    def product_id(self) -&gt; int:
+        return self.__product_id</code></pre>
 </details>
 </section>
 <section>
@@ -60,8 +64,8 @@ class RecipeNesting(GrocyEntity):
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.recipe_nesting.RecipeNesting"><code class="flex name class">
-<span>class <span class="ident">RecipeNesting</span></span>
+<dt id="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion"><code class="flex name class">
+<span>class <span class="ident">QuantityUnitConversion</span></span>
 <span>(</span><span>api, endpoint, parsed_json)</span>
 </code></dt>
 <dd>
@@ -70,33 +74,37 @@ class RecipeNesting(GrocyEntity):
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class RecipeNesting(GrocyEntity):
+<pre><code class="python">class QuantityUnitConversion(GrocyEntity):
     def __init__(self, api: GrocyApiClient, endpoint: str, parsed_json):
-        self.__recipe_id = parse_int(parsed_json.get(&#39;recipe_id&#39;))
-        self.__includes_recipe_id = parse_int(
-            parsed_json.get(&#39;includes_recipe_id&#39;))
-        self.__servings = parse_int(parsed_json.get(&#39;servings&#39;))
+        self.__from_qu_id = parse_int(parsed_json.get(&#39;from_qu_id&#39;))
+        self.__to_qu_id = parse_int(parsed_json.get(&#39;to_qu_id&#39;))
+        self.__factor = parse_float(parsed_json.get(&#39;factor&#39;))
+        self.__product_id = parse_int(parsed_json.get(&#39;product_id&#39;))
         super().__init__(api, endpoint, parsed_json)
 
     @property
-    def recipe_id(self) -&gt; int:
-        return self.__recipe_id
+    def from_qu_id(self) -&gt; int:
+        return self.__from_qu_id
 
     @property
-    def includes_recipe_id(self) -&gt; int:
-        return self.__includes_recipe_id
+    def to_qu_id(self) -&gt; int:
+        return self.__to_qu_id
 
     @property
-    def servings(self) -&gt; int:
-        return self.__servings</code></pre>
+    def factor(self) -&gt; float:
+        return self.__factor
+
+    @property
+    def product_id(self) -&gt; int:
+        return self.__product_id</code></pre>
 </details>
 <h3>Ancestors</h3>
 <ul class="hlist">
-<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
+<li><a title="pygrocydm.grocy_api_client.GrocyEntity" href="../grocy_api_client.html#pygrocydm.grocy_api_client.GrocyEntity">GrocyEntity</a></li>
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pygrocydm.recipe_nesting.RecipeNesting.includes_recipe_id"><code class="name">var <span class="ident">includes_recipe_id</span></code></dt>
+<dt id="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.factor"><code class="name">var <span class="ident">factor</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -104,11 +112,11 @@ class RecipeNesting(GrocyEntity):
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def includes_recipe_id(self) -&gt; int:
-    return self.__includes_recipe_id</code></pre>
+def factor(self) -&gt; float:
+    return self.__factor</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.recipe_nesting.RecipeNesting.recipe_id"><code class="name">var <span class="ident">recipe_id</span></code></dt>
+<dt id="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.from_qu_id"><code class="name">var <span class="ident">from_qu_id</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -116,11 +124,11 @@ def includes_recipe_id(self) -&gt; int:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def recipe_id(self) -&gt; int:
-    return self.__recipe_id</code></pre>
+def from_qu_id(self) -&gt; int:
+    return self.__from_qu_id</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.recipe_nesting.RecipeNesting.servings"><code class="name">var <span class="ident">servings</span></code></dt>
+<dt id="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.product_id"><code class="name">var <span class="ident">product_id</span></code></dt>
 <dd>
 <section class="desc"></section>
 <details class="source">
@@ -128,8 +136,20 @@ def recipe_id(self) -&gt; int:
 <span>Expand source code</span>
 </summary>
 <pre><code class="python">@property
-def servings(self) -&gt; int:
-    return self.__servings</code></pre>
+def product_id(self) -&gt; int:
+    return self.__product_id</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.to_qu_id"><code class="name">var <span class="ident">to_qu_id</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def to_qu_id(self) -&gt; int:
+    return self.__to_qu_id</code></pre>
 </details>
 </dd>
 </dl>
@@ -145,17 +165,18 @@ def servings(self) -&gt; int:
 <ul id="index">
 <li><h3>Super-module</h3>
 <ul>
-<li><code><a title="pygrocydm" href="index.html">pygrocydm</a></code></li>
+<li><code><a title="pygrocydm.entities" href="index.html">pygrocydm.entities</a></code></li>
 </ul>
 </li>
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.recipe_nesting.RecipeNesting" href="#pygrocydm.recipe_nesting.RecipeNesting">RecipeNesting</a></code></h4>
+<h4><code><a title="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion" href="#pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion">QuantityUnitConversion</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.recipe_nesting.RecipeNesting.includes_recipe_id" href="#pygrocydm.recipe_nesting.RecipeNesting.includes_recipe_id">includes_recipe_id</a></code></li>
-<li><code><a title="pygrocydm.recipe_nesting.RecipeNesting.recipe_id" href="#pygrocydm.recipe_nesting.RecipeNesting.recipe_id">recipe_id</a></code></li>
-<li><code><a title="pygrocydm.recipe_nesting.RecipeNesting.servings" href="#pygrocydm.recipe_nesting.RecipeNesting.servings">servings</a></code></li>
+<li><code><a title="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.factor" href="#pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.factor">factor</a></code></li>
+<li><code><a title="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.from_qu_id" href="#pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.from_qu_id">from_qu_id</a></code></li>
+<li><code><a title="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.product_id" href="#pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.product_id">product_id</a></code></li>
+<li><code><a title="pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.to_qu_id" href="#pygrocydm.entities.quantity_unit_conversion.QuantityUnitConversion.to_qu_id">to_qu_id</a></code></li>
 </ul>
 </li>
 </ul>
