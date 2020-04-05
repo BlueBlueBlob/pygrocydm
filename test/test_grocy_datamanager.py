@@ -29,6 +29,7 @@ from pygrocydm.entities.userobject import UserObject
 class TestGrocyDataManager(TestCase):
 
     def setUp(self):
+        dummy = GrocyAPI(CONST_BASE_URL, "api_key",  verify_ssl = CONST_SSL, port = CONST_PORT)
         grocyapi = GrocyAPI(CONST_BASE_URL, "demo_mode",  verify_ssl = CONST_SSL, port = CONST_PORT)
         self.gdm = grocyapi.generic_entities()
 

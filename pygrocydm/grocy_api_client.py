@@ -31,7 +31,15 @@ class GrocyApiClient():
             resp = requests.get(
                 req_url, verify=self.__verify_ssl, headers=self.__headers)
         if request_type == "POST":
-            if data:
+            if isinstance(data, str):
+                up_header = self.__headers.copy()
+                up_header['accept'] = '*/*'
+                up_header['Content-Type'] = 'application/json'
+                resp = requests.post(
+                    req_url, verify=self.__verify_ssl,
+                    headers=up_header,
+                    data=data)
+            elif isinstance(data, dict):
                 resp = requests.post(
                     req_url, verify=self.__verify_ssl,
                     headers=self.__headers,

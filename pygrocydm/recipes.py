@@ -1,6 +1,7 @@
 from .grocy_api_client import GrocyApiClient
 from .utils import parse_int, parse_bool, parse_float
 from typing import List, Tuple
+import json
 
 
 RECIPES_ENDPOINT = 'recipes'
@@ -27,7 +28,7 @@ class Recipe():
             data['excludedProductIds'] = exclude_products
         else:
             data['excludedProductIds'] = [0]
-        self.__api_client.do_request("POST", endpoint, data)
+        self.__api_client.do_request("POST", endpoint, json.dumps(data))
 
     def consume(self):
         endpoint = f"{self.__endpoint}/consume"

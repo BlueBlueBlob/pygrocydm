@@ -2,6 +2,7 @@ import json
 from datetime import datetime
 from test.test_const import CONST_BASE_URL, CONST_PORT, CONST_SSL
 from unittest import TestCase
+from requests.exceptions import HTTPError
 
 from pygrocydm import GrocyAPI
 from pygrocydm.recipes import RECIPES_ENDPOINT, Recipe
@@ -43,6 +44,26 @@ class TestRecipe(TestCase):
     def test_add_product(self):
         recipes = self.grocy_api.recipes().fullfilment_list
         for recipe in recipes:
-            if recipe.recipe_id == 5:
+            if recipe.recipe_id == 2:
                 recipe.add_not_fulfilled_products_to_shoppinglist()
                 break
+
+    def test_add_product_exclude(self):
+        recipes = self.grocy_api.recipes().fullfilment_list
+        for recipe in recipes:
+            if recipe.recipe_id == 2:
+                recipe.add_not_fulfilled_products_to_shoppinglist([17])
+                break
+
+    def test_consume_valid(self):
+        recipes = self.grocy_api.recipes().fullfilment_list
+        for recipe in recipes:
+            if recipe.recipe_id == 3:
+                recipe.consume()
+                break
+
+    def test_consume_error(self):
+        recipes = self.grocy_api.recipes().fullfilment_list
+        for recipe in recipes:
+            if recipe.recipe_id == 0:
+                self.assertRaises(HTTPError, recipe.consume)
