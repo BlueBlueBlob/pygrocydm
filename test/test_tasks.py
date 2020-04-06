@@ -1,7 +1,6 @@
 import json
 from test.test_const import CONST_BASE_URL, CONST_PORT, CONST_SSL
 from unittest import TestCase
-from requests.exceptions import HTTPError
 from datetime import datetime
 
 from pygrocydm import GrocyAPI
