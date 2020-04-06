@@ -1,10 +1,9 @@
 from .grocy_api_client import GrocyApiClient
-from .utils import parse_int, parse_bool, parse_float, parse_date
-from typing import List, Tuple
+from .utils import parse_int, parse_bool, parse_date
+from typing import Tuple
 import json
 from datetime import datetime
 from tzlocal import get_localzone
-import pytz
 
 
 TASKS_ENDPOINT = 'tasks'
