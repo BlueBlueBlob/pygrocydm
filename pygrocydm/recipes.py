@@ -76,7 +76,7 @@ class Recipes():
         endpoint = f"{RECIPES_ENDPOINT}/fulfillment"
         parsed_json = self.__api_client.do_request("GET", endpoint)
         if parsed_json:
-            self.__fullfilment_list = ([Recipe(self.__api_client, response)
+            self.__fullfilment_list = tuple([Recipe(self.__api_client, response)
                                                     for response in parsed_json])
 
     @property
