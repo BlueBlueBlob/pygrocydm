@@ -102,7 +102,7 @@ class Recipes():
         endpoint = f&#34;{RECIPES_ENDPOINT}/fulfillment&#34;
         parsed_json = self.__api_client.do_request(&#34;GET&#34;, endpoint)
         if parsed_json:
-            self.__fullfilment_list = ([Recipe(self.__api_client, response)
+            self.__fullfilment_list = tuple([Recipe(self.__api_client, response)
                                                     for response in parsed_json])
 
     @property
@@ -333,7 +333,7 @@ def recipe_id(self) -&gt; int:
         endpoint = f&#34;{RECIPES_ENDPOINT}/fulfillment&#34;
         parsed_json = self.__api_client.do_request(&#34;GET&#34;, endpoint)
         if parsed_json:
-            self.__fullfilment_list = ([Recipe(self.__api_client, response)
+            self.__fullfilment_list = tuple([Recipe(self.__api_client, response)
                                                     for response in parsed_json])
 
     @property
@@ -370,7 +370,7 @@ def fullfilment_list(self) -&gt; Tuple[Recipe]:
     endpoint = f&#34;{RECIPES_ENDPOINT}/fulfillment&#34;
     parsed_json = self.__api_client.do_request(&#34;GET&#34;, endpoint)
     if parsed_json:
-        self.__fullfilment_list = ([Recipe(self.__api_client, response)
+        self.__fullfilment_list = tuple([Recipe(self.__api_client, response)
                                                 for response in parsed_json])</code></pre>
 </details>
 </dd>

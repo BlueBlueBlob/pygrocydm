@@ -27,6 +27,7 @@
 <pre><code class="python">from pygrocydm.grocy_api_client import DEFAULT_PORT_NUMBER, GrocyApiClient
 from pygrocydm.grocy_datamanager import GrocyDataManager
 from pygrocydm.recipes import Recipes
+from pygrocydm.tasks import Tasks
 
 
 class GrocyAPI():
@@ -48,7 +49,10 @@ class GrocyAPI():
         return GrocyDataManager(self.__api_client)
 
     def recipes(self) -&gt; Recipes:
-        return Recipes(self.__api_client)</code></pre>
+        return Recipes(self.__api_client)
+
+    def tasks(self) -&gt; Tasks:
+        return Tasks(self.__api_client)</code></pre>
 </details>
 </section>
 <section>
@@ -97,7 +101,10 @@ class GrocyAPI():
         return GrocyDataManager(self.__api_client)
 
     def recipes(self) -&gt; Recipes:
-        return Recipes(self.__api_client)</code></pre>
+        return Recipes(self.__api_client)
+
+    def tasks(self) -&gt; Tasks:
+        return Tasks(self.__api_client)</code></pre>
 </details>
 <h3>Methods</h3>
 <dl>
@@ -127,6 +134,19 @@ class GrocyAPI():
     return Recipes(self.__api_client)</code></pre>
 </details>
 </dd>
+<dt id="pygrocydm.grocy_api.GrocyAPI.tasks"><code class="name flex">
+<span>def <span class="ident">tasks</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tasks(self) -&gt; Tasks:
+    return Tasks(self.__api_client)</code></pre>
+</details>
+</dd>
 </dl>
 </dd>
 </dl>
@@ -150,6 +170,7 @@ class GrocyAPI():
 <ul class="">
 <li><code><a title="pygrocydm.grocy_api.GrocyAPI.generic_entities" href="#pygrocydm.grocy_api.GrocyAPI.generic_entities">generic_entities</a></code></li>
 <li><code><a title="pygrocydm.grocy_api.GrocyAPI.recipes" href="#pygrocydm.grocy_api.GrocyAPI.recipes">recipes</a></code></li>
+<li><code><a title="pygrocydm.grocy_api.GrocyAPI.tasks" href="#pygrocydm.grocy_api.GrocyAPI.tasks">tasks</a></code></li>
 </ul>
 </li>
 </ul>
