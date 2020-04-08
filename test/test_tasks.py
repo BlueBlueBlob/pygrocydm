@@ -50,34 +50,21 @@ class TestTask(TestCase):
 
     def test_complete_now(self):
         tasks = self.grocy_api.tasks()
-        for task in tasks.tasks_list:
-            if task.id == 1:
-                task.complete()
-                break
+        test_task = tasks.tasks_list[0]
+        test_id = test_task.id
+        test_task.complete()
         tasks.refresh()
-        for task in tasks.tasks_list:
-            if task.id == 1:
-                assert task.done
-
-    def test_complete(self):
-        test_time = datetime.now()
-        tasks = self.grocy_api.tasks()
-        for task in tasks.tasks_list:
-            if task.id == 1:
-                task.complete(test_time)
-                break
-        tasks.refresh()
-        for task in tasks.tasks_list:
-            if task.id == 1:
-                assert task.done_timestamp == test_time
+        self.assertFalse(any(task.id == test_id for task in tasks.tasks_list))
 
     def test_undo(self):
         tasks = self.grocy_api.tasks()
-        for task in tasks.tasks_list:
-            if task.id == 1:
-                task.undo()
-                break
+        test_task = tasks.tasks_list[0]
+        test_id = test_task.id
+        test_task.complete()
+        test_task.undo()
         tasks.refresh()
         for task in tasks.tasks_list:
-            if task.id == 1:
-                assert not task.done
+            if task.id == test_id:
+                test_task = task
+                break
+        self.assertTrue(any(task.id == test_id for task in tasks.tasks_list))

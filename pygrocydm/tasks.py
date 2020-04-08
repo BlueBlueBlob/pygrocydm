@@ -27,16 +27,9 @@ class Task():
         self.__row_created_timestamp = parse_date(
             parsed_json.get('row_created_timestamp'))
 
-    def complete(self, done_time: datetime = None):
+    def complete(self):
         endpoint = f"{self.__endpoint}/complete"
-        if done_time:
-            data = {}
-            local_tz = get_localzone()
-            localized_done_time = local_tz.localize(done_time)
-            data['done_time'] = localized_done_time.isoformat()
-            self.__api_client.do_request("POST", endpoint, json.dumps(data))
-        else:
-            self.__api_client.do_request("POST", endpoint)
+        self.__api_client.do_request("POST", endpoint)
 
     def undo(self):
         endpoint = f"{self.__endpoint}/undo"

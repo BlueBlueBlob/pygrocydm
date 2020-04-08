@@ -45,6 +45,8 @@ class GrocyApiClient():
                     headers=self.__headers,
                     data=data)
             else:
+                up_header = self.__headers.copy()
+                up_header['accept'] = '*/*'
                 resp = requests.post(
                     req_url, verify=self.__verify_ssl,
                     headers=self.__headers)
