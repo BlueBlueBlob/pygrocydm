@@ -67,5 +67,15 @@ for recipe in recipes_api.fullfilment_list:
 recipes_api.refresh()
 ```
 
+Tasks API :
+```python
+tasks_api = gapi.tasks()
+for task in tasks_api.tasks_list:
+    if task.id == 5:
+        task.complete()
+        task.undo()
+tasks_api.refresh()
+```
+
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm?ref=badge_large)
