@@ -27,10 +27,7 @@
 <pre><code class="python">from .grocy_api_client import GrocyApiClient
 from .utils import parse_int, parse_bool, parse_date
 from typing import Tuple
-import json
 from datetime import datetime
-from tzlocal import get_localzone
-
 
 TASKS_ENDPOINT = &#39;tasks&#39;
 
@@ -52,16 +49,9 @@ class Task():
         self.__row_created_timestamp = parse_date(
             parsed_json.get(&#39;row_created_timestamp&#39;))
 
-    def complete(self, done_time: datetime = None):
+    def complete(self):
         endpoint = f&#34;{self.__endpoint}/complete&#34;
-        if done_time:
-            data = {}
-            local_tz = get_localzone()
-            localized_done_time = local_tz.localize(done_time)
-            data[&#39;done_time&#39;] = localized_done_time.isoformat()
-            self.__api_client.do_request(&#34;POST&#34;, endpoint, json.dumps(data))
-        else:
-            self.__api_client.do_request(&#34;POST&#34;, endpoint)
+        self.__api_client.do_request(&#34;POST&#34;, endpoint)
 
     def undo(self):
         endpoint = f&#34;{self.__endpoint}/undo&#34;
@@ -158,16 +148,9 @@ class Tasks():
         self.__row_created_timestamp = parse_date(
             parsed_json.get(&#39;row_created_timestamp&#39;))
 
-    def complete(self, done_time: datetime = None):
+    def complete(self):
         endpoint = f&#34;{self.__endpoint}/complete&#34;
-        if done_time:
-            data = {}
-            local_tz = get_localzone()
-            localized_done_time = local_tz.localize(done_time)
-            data[&#39;done_time&#39;] = localized_done_time.isoformat()
-            self.__api_client.do_request(&#34;POST&#34;, endpoint, json.dumps(data))
-        else:
-            self.__api_client.do_request(&#34;POST&#34;, endpoint)
+        self.__api_client.do_request(&#34;POST&#34;, endpoint)
 
     def undo(self):
         endpoint = f&#34;{self.__endpoint}/undo&#34;
@@ -323,7 +306,7 @@ def row_created_timestamp(self) -&gt; datetime:
 <h3>Methods</h3>
 <dl>
 <dt id="pygrocydm.tasks.Task.complete"><code class="name flex">
-<span>def <span class="ident">complete</span></span>(<span>self, done_time=None)</span>
+<span>def <span class="ident">complete</span></span>(<span>self)</span>
 </code></dt>
 <dd>
 <section class="desc"></section>
@@ -331,16 +314,9 @@ def row_created_timestamp(self) -&gt; datetime:
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def complete(self, done_time: datetime = None):
+<pre><code class="python">def complete(self):
     endpoint = f&#34;{self.__endpoint}/complete&#34;
-    if done_time:
-        data = {}
-        local_tz = get_localzone()
-        localized_done_time = local_tz.localize(done_time)
-        data[&#39;done_time&#39;] = localized_done_time.isoformat()
-        self.__api_client.do_request(&#34;POST&#34;, endpoint, json.dumps(data))
-    else:
-        self.__api_client.do_request(&#34;POST&#34;, endpoint)</code></pre>
+    self.__api_client.do_request(&#34;POST&#34;, endpoint)</code></pre>
 </details>
 </dd>
 <dt id="pygrocydm.tasks.Task.undo"><code class="name flex">
