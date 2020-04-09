@@ -77,5 +77,11 @@ for task in tasks_api.tasks_list:
 tasks_api.refresh()
 ```
 
+System API :
+```python
+system_api = gapi.system()
+last_db_change = system_api.db_changed_time()
+```
+
 ## License
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2FBlueBlueBlob%2Fpygrocydm?ref=badge_large)
