@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
 <meta name="generator" content="pdoc 0.7.5" />
-<title>pygrocydm.grocy_api API documentation</title>
+<title>pygrocydm.system API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
 <link href='https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/8.0.0/sanitize.min.css' rel='stylesheet'>
@@ -17,46 +17,55 @@
 <main>
 <article id="content">
 <header>
-<h1 class="title">Module <code>pygrocydm.grocy_api</code></h1>
+<h1 class="title">Module <code>pygrocydm.system</code></h1>
 </header>
 <section id="section-intro">
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">from pygrocydm.grocy_api_client import DEFAULT_PORT_NUMBER, GrocyApiClient
-from pygrocydm.grocy_datamanager import GrocyDataManager
-from pygrocydm.recipes import Recipes
-from pygrocydm.tasks import Tasks
-from pygrocydm.system import System
+<pre><code class="python">from .grocy_api_client import GrocyApiClient
+from .utils import parse_date
+
+from datetime import date, datetime
+
+SYSTEM_ENDPOINT = &#39;system&#39;
 
 
-class GrocyAPI():
-    &#34;&#34;&#34; Main class &#34;&#34;&#34;
+class System():
+    def __init__(self, api_client: GrocyApiClient):
+        self.__api_client = api_client
+        self.__versions()
 
-    def __init__(
-            self, base_url, api_key,
-            port: int = DEFAULT_PORT_NUMBER,
-            verify_ssl=True):
-        &#34;&#34;&#34;
-        Constructor requiring base url and API key.
-        Attributes:
-            base_url: Grocy server url.
-            api_key: Grocy API key.
-        &#34;&#34;&#34;
-        self.__api_client = GrocyApiClient(base_url, api_key, port, verify_ssl)
+    def __versions(self):
+        endpoint = f&#34;{SYSTEM_ENDPOINT}/info&#34;
+        parsed_json = self.__api_client.do_request(&#34;GET&#34;, endpoint)
+        self.__grocy_version = parsed_json.get(&#39;grocy_version&#39;).get(&#39;Version&#39;)
+        self.__grocy_release_date = parse_date(parsed_json.get(&#39;grocy_version&#39;).get(&#39;ReleaseDate&#39;)).date
+        self.__php_version = parsed_json.get(&#39;php_version&#39;)
+        self.__sqlite_version = parsed_json.get(&#39;sqlite_version&#39;)
 
-    def generic_entities(self) -&gt; GrocyDataManager:
-        return GrocyDataManager(self.__api_client)
+    def db_changed_time(self) -&gt; datetime:
+        endpoint = f&#34;{SYSTEM_ENDPOINT}/db-changed-time&#34;
+        parsed_json = self.__api_client.do_request(&#34;GET&#34;, endpoint)
+        return parse_date(parsed_json.get(&#39;changed_time&#39;))
 
-    def recipes(self) -&gt; Recipes:
-        return Recipes(self.__api_client)
+    @property
+    def grocy_version(self) -&gt; str:
+        return self.__grocy_version
 
-    def tasks(self) -&gt; Tasks:
-        return Tasks(self.__api_client)
+    @property
+    def grocy_release_date(self) -&gt; date:
+        return self.__grocy_release_date
 
-    def system(self) -&gt; System:
-        return System(self.__api_client)</code></pre>
+    @property
+    def php_version(self) -&gt; str:
+        return self.__php_version
+
+    @property
+    def sqlite_version(self) -&gt; str:
+        return self.__sqlite_version
+ </code></pre>
 </details>
 </section>
 <section>
@@ -68,55 +77,105 @@ class GrocyAPI():
 <section>
 <h2 class="section-title" id="header-classes">Classes</h2>
 <dl>
-<dt id="pygrocydm.grocy_api.GrocyAPI"><code class="flex name class">
-<span>class <span class="ident">GrocyAPI</span></span>
-<span>(</span><span>base_url, api_key, port=9192, verify_ssl=True)</span>
+<dt id="pygrocydm.system.System"><code class="flex name class">
+<span>class <span class="ident">System</span></span>
+<span>(</span><span>api_client)</span>
 </code></dt>
 <dd>
-<section class="desc"><p>Main class </p>
-<p>Constructor requiring base url and API key.</p>
-<h2 id="attributes">Attributes</h2>
-<dl>
-<dt><strong><code>base_url</code></strong></dt>
-<dd>Grocy server url.</dd>
-<dt><strong><code>api_key</code></strong></dt>
-<dd>Grocy API key.</dd>
-</dl></section>
+<section class="desc"></section>
 <details class="source">
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">class GrocyAPI():
-    &#34;&#34;&#34; Main class &#34;&#34;&#34;
+<pre><code class="python">class System():
+    def __init__(self, api_client: GrocyApiClient):
+        self.__api_client = api_client
+        self.__versions()
 
-    def __init__(
-            self, base_url, api_key,
-            port: int = DEFAULT_PORT_NUMBER,
-            verify_ssl=True):
-        &#34;&#34;&#34;
-        Constructor requiring base url and API key.
-        Attributes:
-            base_url: Grocy server url.
-            api_key: Grocy API key.
-        &#34;&#34;&#34;
-        self.__api_client = GrocyApiClient(base_url, api_key, port, verify_ssl)
+    def __versions(self):
+        endpoint = f&#34;{SYSTEM_ENDPOINT}/info&#34;
+        parsed_json = self.__api_client.do_request(&#34;GET&#34;, endpoint)
+        self.__grocy_version = parsed_json.get(&#39;grocy_version&#39;).get(&#39;Version&#39;)
+        self.__grocy_release_date = parse_date(parsed_json.get(&#39;grocy_version&#39;).get(&#39;ReleaseDate&#39;)).date
+        self.__php_version = parsed_json.get(&#39;php_version&#39;)
+        self.__sqlite_version = parsed_json.get(&#39;sqlite_version&#39;)
 
-    def generic_entities(self) -&gt; GrocyDataManager:
-        return GrocyDataManager(self.__api_client)
+    def db_changed_time(self) -&gt; datetime:
+        endpoint = f&#34;{SYSTEM_ENDPOINT}/db-changed-time&#34;
+        parsed_json = self.__api_client.do_request(&#34;GET&#34;, endpoint)
+        return parse_date(parsed_json.get(&#39;changed_time&#39;))
 
-    def recipes(self) -&gt; Recipes:
-        return Recipes(self.__api_client)
+    @property
+    def grocy_version(self) -&gt; str:
+        return self.__grocy_version
 
-    def tasks(self) -&gt; Tasks:
-        return Tasks(self.__api_client)
+    @property
+    def grocy_release_date(self) -&gt; date:
+        return self.__grocy_release_date
 
-    def system(self) -&gt; System:
-        return System(self.__api_client)</code></pre>
+    @property
+    def php_version(self) -&gt; str:
+        return self.__php_version
+
+    @property
+    def sqlite_version(self) -&gt; str:
+        return self.__sqlite_version</code></pre>
 </details>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pygrocydm.system.System.grocy_release_date"><code class="name">var <span class="ident">grocy_release_date</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def grocy_release_date(self) -&gt; date:
+    return self.__grocy_release_date</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.system.System.grocy_version"><code class="name">var <span class="ident">grocy_version</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def grocy_version(self) -&gt; str:
+    return self.__grocy_version</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.system.System.php_version"><code class="name">var <span class="ident">php_version</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def php_version(self) -&gt; str:
+    return self.__php_version</code></pre>
+</details>
+</dd>
+<dt id="pygrocydm.system.System.sqlite_version"><code class="name">var <span class="ident">sqlite_version</span></code></dt>
+<dd>
+<section class="desc"></section>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def sqlite_version(self) -&gt; str:
+    return self.__sqlite_version</code></pre>
+</details>
+</dd>
+</dl>
 <h3>Methods</h3>
 <dl>
-<dt id="pygrocydm.grocy_api.GrocyAPI.generic_entities"><code class="name flex">
-<span>def <span class="ident">generic_entities</span></span>(<span>self)</span>
+<dt id="pygrocydm.system.System.db_changed_time"><code class="name flex">
+<span>def <span class="ident">db_changed_time</span></span>(<span>self)</span>
 </code></dt>
 <dd>
 <section class="desc"></section>
@@ -124,47 +183,10 @@ class GrocyAPI():
 <summary>
 <span>Expand source code</span>
 </summary>
-<pre><code class="python">def generic_entities(self) -&gt; GrocyDataManager:
-    return GrocyDataManager(self.__api_client)</code></pre>
-</details>
-</dd>
-<dt id="pygrocydm.grocy_api.GrocyAPI.recipes"><code class="name flex">
-<span>def <span class="ident">recipes</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def recipes(self) -&gt; Recipes:
-    return Recipes(self.__api_client)</code></pre>
-</details>
-</dd>
-<dt id="pygrocydm.grocy_api.GrocyAPI.system"><code class="name flex">
-<span>def <span class="ident">system</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def system(self) -&gt; System:
-    return System(self.__api_client)</code></pre>
-</details>
-</dd>
-<dt id="pygrocydm.grocy_api.GrocyAPI.tasks"><code class="name flex">
-<span>def <span class="ident">tasks</span></span>(<span>self)</span>
-</code></dt>
-<dd>
-<section class="desc"></section>
-<details class="source">
-<summary>
-<span>Expand source code</span>
-</summary>
-<pre><code class="python">def tasks(self) -&gt; Tasks:
-    return Tasks(self.__api_client)</code></pre>
+<pre><code class="python">def db_changed_time(self) -&gt; datetime:
+    endpoint = f&#34;{SYSTEM_ENDPOINT}/db-changed-time&#34;
+    parsed_json = self.__api_client.do_request(&#34;GET&#34;, endpoint)
+    return parse_date(parsed_json.get(&#39;changed_time&#39;))</code></pre>
 </details>
 </dd>
 </dl>
@@ -186,12 +208,13 @@ class GrocyAPI():
 <li><h3><a href="#header-classes">Classes</a></h3>
 <ul>
 <li>
-<h4><code><a title="pygrocydm.grocy_api.GrocyAPI" href="#pygrocydm.grocy_api.GrocyAPI">GrocyAPI</a></code></h4>
+<h4><code><a title="pygrocydm.system.System" href="#pygrocydm.system.System">System</a></code></h4>
 <ul class="">
-<li><code><a title="pygrocydm.grocy_api.GrocyAPI.generic_entities" href="#pygrocydm.grocy_api.GrocyAPI.generic_entities">generic_entities</a></code></li>
-<li><code><a title="pygrocydm.grocy_api.GrocyAPI.recipes" href="#pygrocydm.grocy_api.GrocyAPI.recipes">recipes</a></code></li>
-<li><code><a title="pygrocydm.grocy_api.GrocyAPI.system" href="#pygrocydm.grocy_api.GrocyAPI.system">system</a></code></li>
-<li><code><a title="pygrocydm.grocy_api.GrocyAPI.tasks" href="#pygrocydm.grocy_api.GrocyAPI.tasks">tasks</a></code></li>
+<li><code><a title="pygrocydm.system.System.db_changed_time" href="#pygrocydm.system.System.db_changed_time">db_changed_time</a></code></li>
+<li><code><a title="pygrocydm.system.System.grocy_release_date" href="#pygrocydm.system.System.grocy_release_date">grocy_release_date</a></code></li>
+<li><code><a title="pygrocydm.system.System.grocy_version" href="#pygrocydm.system.System.grocy_version">grocy_version</a></code></li>
+<li><code><a title="pygrocydm.system.System.php_version" href="#pygrocydm.system.System.php_version">php_version</a></code></li>
+<li><code><a title="pygrocydm.system.System.sqlite_version" href="#pygrocydm.system.System.sqlite_version">sqlite_version</a></code></li>
 </ul>
 </li>
 </ul>
