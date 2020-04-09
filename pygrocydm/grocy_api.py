@@ -2,6 +2,7 @@ from pygrocydm.grocy_api_client import DEFAULT_PORT_NUMBER, GrocyApiClient
 from pygrocydm.grocy_datamanager import GrocyDataManager
 from pygrocydm.recipes import Recipes
 from pygrocydm.tasks import Tasks
+from pygrocydm.system import System
 
 
 class GrocyAPI():
@@ -27,3 +28,6 @@ class GrocyAPI():
 
     def tasks(self) -> Tasks:
         return Tasks(self.__api_client)
+
+    def system(self) -> System:
+        return System(self.__api_client)
