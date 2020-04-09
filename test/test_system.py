@@ -25,4 +25,3 @@ class TestSystem(TestCase):
     def test_db_changed_time(self):
         db_time = self.grocy_api.system().db_changed_time()
         self.assertIsInstance(db_time, datetime)
-
