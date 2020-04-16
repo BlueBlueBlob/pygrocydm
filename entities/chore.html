@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
-<meta name="generator" content="pdoc 0.8.0" />
+<meta name="generator" content="pdoc 0.8.1" />
 <title>pygrocydm.entities.chore API documentation</title>
 <meta name="description" content="" />
 <link href='https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.0/normalize.min.css' rel='stylesheet'>
@@ -227,7 +227,7 @@ class Chore(GrocyEntity):
 </ul>
 <h3>Instance variables</h3>
 <dl>
-<dt id="pygrocydm.entities.chore.Chore.assignment_config"><code class="name">var <span class="ident">assignment_config</span> -> str</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.assignment_config"><code class="name">var <span class="ident">assignment_config</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -239,7 +239,7 @@ def assignment_config(self) -&gt; str:
     return self.__assignment_config</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.entities.chore.Chore.assignment_type"><code class="name">var <span class="ident">assignment_type</span> -> str</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.assignment_type"><code class="name">var <span class="ident">assignment_type</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -251,7 +251,7 @@ def assignment_type(self) -&gt; str:
     return self.__assignment_type</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.entities.chore.Chore.description"><code class="name">var <span class="ident">description</span> -> str</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.description"><code class="name">var <span class="ident">description</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -263,7 +263,7 @@ def description(self) -&gt; str:
     return self.__description</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.entities.chore.Chore.name"><code class="name">var <span class="ident">name</span> -> str</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.name"><code class="name">var <span class="ident">name</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -275,7 +275,7 @@ def name(self) -&gt; str:
     return self.__name</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.entities.chore.Chore.next_execution_assigned_to_user_id"><code class="name">var <span class="ident">next_execution_assigned_to_user_id</span> -> int</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.next_execution_assigned_to_user_id"><code class="name">var <span class="ident">next_execution_assigned_to_user_id</span> : int</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -287,7 +287,7 @@ def next_execution_assigned_to_user_id(self) -&gt; int:
     return self.__next_execution_assigned_to_user_id</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.entities.chore.Chore.period_config"><code class="name">var <span class="ident">period_config</span> -> str</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.period_config"><code class="name">var <span class="ident">period_config</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -299,7 +299,7 @@ def period_config(self) -&gt; str:
     return self.__period_config</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.entities.chore.Chore.period_days"><code class="name">var <span class="ident">period_days</span> -> int</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.period_days"><code class="name">var <span class="ident">period_days</span> : int</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -311,7 +311,7 @@ def period_days(self) -&gt; int:
     return self.__period_days</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.entities.chore.Chore.period_type"><code class="name">var <span class="ident">period_type</span> -> str</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.period_type"><code class="name">var <span class="ident">period_type</span> : str</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -323,7 +323,7 @@ def period_type(self) -&gt; str:
     return self.__period_type</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.entities.chore.Chore.rollover"><code class="name">var <span class="ident">rollover</span> -> bool</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.rollover"><code class="name">var <span class="ident">rollover</span> : bool</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -335,7 +335,7 @@ def rollover(self) -&gt; bool:
     return self.__rollover</code></pre>
 </details>
 </dd>
-<dt id="pygrocydm.entities.chore.Chore.track_date_only"><code class="name">var <span class="ident">track_date_only</span> -> bool</code></dt>
+<dt id="pygrocydm.entities.chore.Chore.track_date_only"><code class="name">var <span class="ident">track_date_only</span> : bool</code></dt>
 <dd>
 <div class="desc"></div>
 <details class="source">
@@ -450,7 +450,7 @@ def track_date_only(self) -&gt; bool:
 </nav>
 </main>
 <footer id="footer">
-<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.0</a>.</p>
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.8.1</a>.</p>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
 <script>hljs.initHighlightingOnLoad()</script>
